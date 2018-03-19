@@ -40,6 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Materials\IAssignment.cs" />
+    <Compile Include="Materials\IBook.cs" />
+    <Compile Include="Materials\IFileResource.cs" />
+    <Compile Include="Materials\IFileUpload.cs" />
+    <Compile Include="Materials\IHandin.cs" />
+    <Compile Include="Materials\IHomework.cs" />
+    <Compile Include="Materials\IInternet.cs" />
+    <Compile Include="Materials\IOther.cs" />
+    <Compile Include="Materials\IResource.cs" />
+    <Compile Include="Materials\ISyllabus.cs" />
     <Compile Include="Users\ICourseManager.cs" />
     <Compile Include="Users\IEmployee.cs" />
     <Compile Include="Users\ILector.cs" />
