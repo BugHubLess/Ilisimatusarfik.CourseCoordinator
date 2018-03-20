@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Actions\IEnroll.cs" />
+    <Compile Include="Actions\IRollCall.cs" />
     <Compile Include="Materials\IAssignment.cs" />
     <Compile Include="Materials\IBook.cs" />
     <Compile Include="Materials\IFileResource.cs" />
