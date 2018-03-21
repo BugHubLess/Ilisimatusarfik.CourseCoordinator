@@ -5,7 +5,7 @@
     using System.Collections.Generic;
 
     /// <summary>
-    /// A course for a single term
+    /// A course for a single semester
     /// </summary>
     public interface ICourse
     {
