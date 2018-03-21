@@ -83,6 +83,17 @@
     <Build Include="Tables\Enrolled.sql" />
     <Build Include="ForeignKeys\FKEnrolledStudents.sql" />
     <Build Include="ForeignKeys\FKEnrolledCourses.sql" />
+    <Build Include="Tables\StudentRollRegistries.sql" />
+    <Build Include="ForeignKeys\FKSRRStudents.sql" />
+    <Build Include="ForeignKeys\FKSRRLectures.sql" />
+    <Build Include="Tables\Lectures.sql" />
+    <Build Include="Tables\Status.sql" />
+    <Build Include="Tables\StatusTranslations.sql" />
+    <Build Include="ForeignKeys\FKLecturesStatus.sql" />
+    <Build Include="ForeignKeys\FKLecturesCourses.sql" />
+    <Build Include="ForeignKeys\FKStatusStatusTranslations.sql" />
+    <Build Include="Tables\Classrooms.sql" />
+    <Build Include="ForeignKeys\FKLecturesClassrooms.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />

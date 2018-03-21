@@ -56,4 +56,39 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="CourseID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="9095c1d9-2973-4cd7-926d-de1b6eb07e34" ChangeDateTime="03/21/2018 16:47:54">
+    <Property Name="ElementName" Value="[dbo].[StudentRollRegistries].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[StudentRollRegistries]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="StudentID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="277411ae-dedc-4dbd-a26e-c2fb57bf2724" ChangeDateTime="03/21/2018 16:51:09">
+    <Property Name="ElementName" Value="[dbo].[Lectures].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Lectures]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LectureID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bce9d7af-782b-46ee-b8c7-a66d29c5eb2c" ChangeDateTime="03/21/2018 16:55:59">
+    <Property Name="ElementName" Value="[dbo].[Status].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Status]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="StatusID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6b2dda72-7a02-4eec-8243-e580e6d4c25f" ChangeDateTime="03/21/2018 16:56:30">
+    <Property Name="ElementName" Value="[dbo].[StatusTranslations].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[StatusTranslations]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="StatusID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="a5ecefa2-52e7-4b79-b06f-d16439fdd083" ChangeDateTime="03/21/2018 17:01:12">
+    <Property Name="ElementName" Value="[dbo].[Classrooms].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Classrooms]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ClassroomID" />
+  </Operation>
 </Operations>
