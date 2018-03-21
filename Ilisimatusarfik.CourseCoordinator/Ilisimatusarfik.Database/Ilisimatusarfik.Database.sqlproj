@@ -61,11 +61,16 @@
     <Folder Include="Tables" />
     <Folder Include="Indices" />
     <Folder Include="UniqueKeys" />
+    <Folder Include="ForeignKeys" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Languages.sql" />
     <Build Include="Indices\LanguagesIndexCulture.sql" />
     <Build Include="UniqueKeys\LanguagesCultureUnique.sql" />
+    <Build Include="Tables\StudyPrograms.sql" />
+    <Build Include="Tables\StudyProgramsTranslations.sql" />
+    <Build Include="ForeignKeys\FKStudyProgramsTranslationStudyProgram.sql" />
+    <Build Include="ForeignKeys\FKStudyProgramsTranslationsLanguages.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />
