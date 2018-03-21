@@ -75,6 +75,14 @@
     <Build Include="Tables\StudyProgramCourses.sql" />
     <Build Include="ForeignKeys\FKSPCoursesStudyPrograms.sql" />
     <Build Include="ForeignKeys\FKSPCoursesCourses.sql" />
+    <Build Include="Tables\CourseTranslations.sql" />
+    <Build Include="ForeignKeys\FKCourseTranslationsCourses.sql" />
+    <Build Include="ForeignKeys\FKCourseTranslationsLanguages.sql" />
+    <Build Include="Indices\CoursesIndexStartDate.sql" />
+    <Build Include="Tables\Students.sql" />
+    <Build Include="Tables\Enrolled.sql" />
+    <Build Include="ForeignKeys\FKEnrolledStudents.sql" />
+    <Build Include="ForeignKeys\FKEnrolledCourses.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />
