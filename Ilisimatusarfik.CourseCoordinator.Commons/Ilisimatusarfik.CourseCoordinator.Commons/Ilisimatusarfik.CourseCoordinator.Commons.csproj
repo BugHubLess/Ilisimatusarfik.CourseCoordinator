@@ -52,6 +52,8 @@
     <Compile Include="Materials\IOther.cs" />
     <Compile Include="Materials\IResource.cs" />
     <Compile Include="Materials\ISyllabus.cs" />
+    <Compile Include="Places\IStudyProgram.cs" />
+    <Compile Include="Places\ISemester.cs" />
     <Compile Include="Users\ICourseManager.cs" />
     <Compile Include="Users\IEmployee.cs" />
     <Compile Include="Users\ILector.cs" />
