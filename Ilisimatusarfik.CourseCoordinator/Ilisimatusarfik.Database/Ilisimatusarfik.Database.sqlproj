@@ -71,6 +71,10 @@
     <Build Include="Tables\StudyProgramsTranslations.sql" />
     <Build Include="ForeignKeys\FKStudyProgramsTranslationStudyProgram.sql" />
     <Build Include="ForeignKeys\FKStudyProgramsTranslationsLanguages.sql" />
+    <Build Include="Tables\Courses.sql" />
+    <Build Include="Tables\StudyProgramCourses.sql" />
+    <Build Include="ForeignKeys\FKSPCoursesStudyPrograms.sql" />
+    <Build Include="ForeignKeys\FKSPCoursesCourses.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />
