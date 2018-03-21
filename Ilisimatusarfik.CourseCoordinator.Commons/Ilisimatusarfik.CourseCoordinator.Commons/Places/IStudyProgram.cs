@@ -2,6 +2,10 @@
 {
     using System.Collections.Generic;
 
+    /// <summary>
+    /// A single study program, i.e.
+    /// Social sciences, journalism, business economist.
+    /// </summary>
     public interface IStudyProgram
     {
         int StudyProgramID { get; set; }
