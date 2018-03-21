@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27428.2005
+VisualStudioVersion = 15.0.27428.2011
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilisimatusarfik.CourseCoordinator.Commons", "Ilisimatusarfik.CourseCoordinator.Commons\Ilisimatusarfik.CourseCoordinator.Commons.csproj", "{ABCFD037-33DA-4FF6-82F3-31DC2D05C9E0}"
 EndProject
@@ -20,6 +20,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A917A65C-A9C0-4BF0-805E-217FF10E7DC2}
+		SolutionGuid = {2D452744-FB50-47B2-8E8F-226C27A8138D}
 	EndGlobalSection
 EndGlobal
