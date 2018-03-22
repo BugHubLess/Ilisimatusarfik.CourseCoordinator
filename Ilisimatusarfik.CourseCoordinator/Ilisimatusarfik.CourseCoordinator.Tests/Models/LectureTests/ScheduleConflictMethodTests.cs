@@ -7,7 +7,7 @@
     public class ScheduleConflictMethodTests
     {
         [Fact]
-        public void ShouldHaveNoScheduleConflict()
+        public void WhenNotOverlapping_ShouldNotHaveScheduleConflict()
         {
             // Arrange
             var l1 = new Lecture();
