@@ -2,3 +2,4 @@
 	ADD CONSTRAINT [fk_statustranslations_status]
 	FOREIGN KEY (StatusID)
 	REFERENCES [Status] (StatusID)
+	ON DELETE CASCADE

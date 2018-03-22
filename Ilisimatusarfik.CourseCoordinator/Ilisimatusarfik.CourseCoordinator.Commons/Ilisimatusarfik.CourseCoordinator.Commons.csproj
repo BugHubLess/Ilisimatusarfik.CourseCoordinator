@@ -68,6 +68,7 @@
     <Compile Include="Models\Users\Student.cs" />
     <Compile Include="Repositories\ILanguageRepository.cs" />
     <Compile Include="Repositories\ILectureRepository.cs" />
+    <Compile Include="Repositories\IStatusRepository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
