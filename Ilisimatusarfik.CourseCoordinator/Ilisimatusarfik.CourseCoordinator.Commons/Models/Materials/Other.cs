@@ -1,6 +1,6 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Models.Materials
 {
-    public interface IOther : IResource
+    public class Other : Resource
     {
         string MediaType { get; set; }
     }

@@ -2,10 +2,10 @@
 {
     using Ilisimatusarfik.CourseCoordinator.Commons.Models.Users;
 
-    public interface IHandin
+    public class Handin
     {
-        IStudent Student { get; set; }
-        IAssignment Assignment { get; set; }
-        IFileUpload File { get; set; }
+        Student Student { get; set; }
+        Assignment Assignment { get; set; }
+        FileUpload File { get; set; }
     }
 }

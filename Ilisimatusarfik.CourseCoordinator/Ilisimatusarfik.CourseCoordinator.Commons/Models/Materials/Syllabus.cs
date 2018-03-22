@@ -2,9 +2,9 @@
 {
     using System.Collections.Generic;
 
-    public interface ISyllabus
+    public class Syllabus
     {
         int CourseID { get; set; }
-        IList<IResource> Materials { get; set; }
+        IList<Resource> Materials { get; set; }
     }
 }

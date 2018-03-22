@@ -1,7 +1,7 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Models.Users
 {
-    public interface ICourseManager : IEmployee
+    public class Lector : Employee
     {
-        int CourseID { get; set; }
+        int LectureID { get; set; }
     }
 }

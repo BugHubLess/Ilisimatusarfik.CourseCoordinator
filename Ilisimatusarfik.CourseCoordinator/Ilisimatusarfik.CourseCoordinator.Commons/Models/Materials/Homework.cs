@@ -2,10 +2,10 @@
 {
     using Ilisimatusarfik.CourseCoordinator.Commons.Models.Places;
 
-    public interface IHomework
+    public class Homework
     {
         int HomeworkID { get; set; }
         string Description { get; set; }
-        ILecture Due { get; set; }
+        Lecture Due { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface IInternet : IResource
+    public class Internet : Resource
     {
         string URL { get; set; }
         DateTimeOffset Date { get; set; }

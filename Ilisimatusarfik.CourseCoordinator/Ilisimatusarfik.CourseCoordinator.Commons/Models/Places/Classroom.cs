@@ -1,6 +1,6 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Models.Places
 {
-    public interface IClassroom
+    public class Classroom
     {
         int ClassroomID { get; set; }
         int Capacity { get; set; }

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface IResource
+    public class Resource
     {
         int ResourceID { get; set; }
         DateTimeOffset CreatedDate { get; set; }

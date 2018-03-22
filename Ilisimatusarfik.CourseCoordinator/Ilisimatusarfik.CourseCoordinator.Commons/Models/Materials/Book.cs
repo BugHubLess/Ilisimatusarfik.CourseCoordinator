@@ -2,7 +2,7 @@
 {
     using System;
 
-    public interface IBook : IResource
+    public class Book : Resource
     {
         string Title { get; set; }
         string Authors { get; set; }

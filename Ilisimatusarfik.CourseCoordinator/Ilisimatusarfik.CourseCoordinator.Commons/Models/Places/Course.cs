@@ -7,7 +7,7 @@
     /// <summary>
     /// A course for a single semester
     /// </summary>
-    public interface ICourse
+    public class Course
     {
         int CourseID { get; set; }
         DateTimeOffset StartDate { get; set; }
@@ -17,7 +17,7 @@
         string Description { get; set; }
 
 
-        Lazy<IList<ILecture>> Lectures { get; set; }
-        Lazy<IList<IStudent>> Enrolled { get; set; }
+        Lazy<IList<Lecture>> Lectures { get; set; }
+        Lazy<IList<Student>> Enrolled { get; set; }
     }
 }
