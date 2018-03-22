@@ -9,9 +9,9 @@
     /// </summary>
     public class StudyProgram
     {
-        int StudyProgramID { get; set; }
-        string Name { get; set; }
-        string Description { get; set; }
-        Lazy<IList<Semester>> SemesterCourses { get; set; }
+        public int StudyProgramID { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public Lazy<IList<Semester>> SemesterCourses { get; set; }
     }
 }

@@ -5,10 +5,10 @@
 
     public class Assignment
     {
-        int AssignmentID { get; set; }
-        string Description { get; set; }
-        Course Course { get; set; }
-        DateTimeOffset DueDate { get; set; }
-        bool IsMandatory { get; set; }
+        public int AssignmentID { get; set; }
+        public string Description { get; set; }
+        public Course Course { get; set; }
+        public DateTimeOffset DueDate { get; set; }
+        public bool IsMandatory { get; set; }
     }
 }

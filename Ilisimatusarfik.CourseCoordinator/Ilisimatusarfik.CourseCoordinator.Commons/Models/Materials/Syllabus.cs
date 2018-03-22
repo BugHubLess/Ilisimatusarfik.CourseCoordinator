@@ -4,7 +4,7 @@
 
     public class Syllabus
     {
-        int CourseID { get; set; }
-        IList<Resource> Materials { get; set; }
+        public int CourseID { get; set; }
+        public IList<Resource> Materials { get; set; }
     }
 }

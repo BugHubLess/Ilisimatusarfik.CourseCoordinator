@@ -5,12 +5,12 @@
 
     public class Lecture : IComparable<Lecture>
     {
-        int LectureID { get; set; }
-        Course Course { get; set; }
-        DateTimeOffset Start { get; set; }
-        TimeSpan Duration { get; set; }
-        Status Status { get; set; }
-        Classroom Classroom { get; set; }
+        public int LectureID { get; set; }
+        public Course Course { get; set; }
+        public DateTimeOffset Start { get; set; }
+        public TimeSpan Duration { get; set; }
+        public Status Status { get; set; }
+        public Classroom Classroom { get; set; }
 
         public int CompareTo(Lecture other)
         {

@@ -4,8 +4,8 @@
 
     public class Internet : Resource
     {
-        string URL { get; set; }
-        DateTimeOffset Date { get; set; }
-        string Title { get; set; }
+        public string URL { get; set; }
+        public DateTimeOffset Date { get; set; }
+        public string Title { get; set; }
     }
 }

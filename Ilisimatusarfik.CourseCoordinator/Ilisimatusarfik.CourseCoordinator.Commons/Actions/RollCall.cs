@@ -2,8 +2,8 @@
 {
     public class RollCall
     {
-        int StudentID { get; set; }
-        int LectureID { get; set; }
-        bool? IsPresent { get; set; }
+        public int StudentID { get; set; }
+        public int LectureID { get; set; }
+        public bool? IsPresent { get; set; }
     }
 }

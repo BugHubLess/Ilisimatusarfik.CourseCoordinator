@@ -2,7 +2,7 @@
 {
     public class Semester
     {
-        int SemesterTerm { get; set; }
-        Course Course { get; set; }
+        public int SemesterTerm { get; set; }
+        public Course Course { get; set; }
     }
 }

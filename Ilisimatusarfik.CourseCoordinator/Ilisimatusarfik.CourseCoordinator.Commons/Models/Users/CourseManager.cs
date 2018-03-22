@@ -2,6 +2,6 @@
 {
     public class CourseManager : Employee
     {
-        int CourseID { get; set; }
+        public int CourseID { get; set; }
     }
 }

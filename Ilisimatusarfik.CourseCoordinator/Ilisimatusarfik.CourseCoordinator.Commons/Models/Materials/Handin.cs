@@ -4,8 +4,8 @@
 
     public class Handin
     {
-        Student Student { get; set; }
-        Assignment Assignment { get; set; }
-        FileUpload File { get; set; }
+        public Student Student { get; set; }
+        public Assignment Assignment { get; set; }
+        public FileUpload File { get; set; }
     }
 }

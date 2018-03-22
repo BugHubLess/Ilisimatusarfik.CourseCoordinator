@@ -4,8 +4,8 @@
 
     public class Resource
     {
-        int ResourceID { get; set; }
-        DateTimeOffset CreatedDate { get; set; }
-        string Description { get; set; }
+        public int ResourceID { get; set; }
+        public DateTimeOffset CreatedDate { get; set; }
+        public string Description { get; set; }
     }
 }

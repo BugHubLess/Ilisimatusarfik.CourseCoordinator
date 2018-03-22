@@ -2,6 +2,6 @@
 {
     public class Lector : Employee
     {
-        int LectureID { get; set; }
+        public int LectureID { get; set; }
     }
 }

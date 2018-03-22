@@ -4,13 +4,13 @@
 
     public class Book : Resource
     {
-        string Title { get; set; }
-        string Authors { get; set; }
-        int Pages { get; set; }
-        string Publisher { get; set; }
-        DateTime PublishDate { get; set; }
-        string Edition { get; set; }
-        string ISBN { get; set; }
-        string Subtitle { get; set; }
+        public string Title { get; set; }
+        public string Authors { get; set; }
+        public int Pages { get; set; }
+        public string Publisher { get; set; }
+        public DateTime PublishDate { get; set; }
+        public string Edition { get; set; }
+        public string ISBN { get; set; }
+        public string Subtitle { get; set; }
     }
 }

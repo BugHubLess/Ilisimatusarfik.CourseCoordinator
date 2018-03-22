@@ -2,6 +2,6 @@
 {
     public class Other : Resource
     {
-        string MediaType { get; set; }
+        public string MediaType { get; set; }
     }
 }

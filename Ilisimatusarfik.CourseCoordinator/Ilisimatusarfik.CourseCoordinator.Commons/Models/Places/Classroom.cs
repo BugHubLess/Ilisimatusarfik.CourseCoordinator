@@ -2,8 +2,8 @@
 {
     public class Classroom
     {
-        int ClassroomID { get; set; }
-        int Capacity { get; set; }
-        string Location { get; set; }
+        public int ClassroomID { get; set; }
+        public int Capacity { get; set; }
+        public string Location { get; set; }
     }
 }

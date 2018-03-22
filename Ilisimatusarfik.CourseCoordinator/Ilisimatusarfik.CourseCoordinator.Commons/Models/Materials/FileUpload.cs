@@ -5,10 +5,10 @@
     /// </summary>
     public class FileUpload
     {
-        int FileUploadID { get; set; }
-        string Filename { get; set; }
-        string Extension { get; set; }
-        string MimeType { get; set; }
-        string Path { get; set; }
+        public int FileUploadID { get; set; }
+        public string Filename { get; set; }
+        public string Extension { get; set; }
+        public string MimeType { get; set; }
+        public string Path { get; set; }
     }
 }

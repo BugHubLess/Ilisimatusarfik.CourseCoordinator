@@ -9,15 +9,15 @@
     /// </summary>
     public class Course
     {
-        int CourseID { get; set; }
-        DateTimeOffset StartDate { get; set; }
-        DateTimeOffset EndDate { get; set; }
-        int ECTS { get; set; }
-        string Name { get; set; }
-        string Description { get; set; }
+        public int CourseID { get; set; }
+        public DateTimeOffset StartDate { get; set; }
+        public DateTimeOffset EndDate { get; set; }
+        public int ECTS { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
 
 
-        Lazy<IList<Lecture>> Lectures { get; set; }
-        Lazy<IList<Student>> Enrolled { get; set; }
+        public Lazy<IList<Lecture>> Lectures { get; set; }
+        public Lazy<IList<Student>> Enrolled { get; set; }
     }
 }

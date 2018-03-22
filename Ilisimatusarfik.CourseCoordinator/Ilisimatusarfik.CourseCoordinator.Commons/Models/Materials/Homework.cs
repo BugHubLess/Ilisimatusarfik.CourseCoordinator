@@ -4,8 +4,8 @@
 
     public class Homework
     {
-        int HomeworkID { get; set; }
-        string Description { get; set; }
-        Lecture Due { get; set; }
+        public int HomeworkID { get; set; }
+        public string Description { get; set; }
+        public Lecture Due { get; set; }
     }
 }

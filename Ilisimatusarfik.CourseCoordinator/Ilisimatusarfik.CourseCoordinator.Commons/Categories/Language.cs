@@ -4,8 +4,8 @@
 
     public class Language
     {
-        int LanguageID { get; set; }
-        CultureInfo Culture { get; set; }
-        string DisplayName { get; set; }
+        public int LanguageID { get; set; }
+        public CultureInfo Culture { get; set; }
+        public string DisplayName { get; set; }
     }
 }
