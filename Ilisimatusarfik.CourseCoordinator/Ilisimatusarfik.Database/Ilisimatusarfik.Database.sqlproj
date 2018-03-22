@@ -94,6 +94,7 @@
     <Build Include="ForeignKeys\FKStatusStatusTranslations.sql" />
     <Build Include="Tables\Classrooms.sql" />
     <Build Include="ForeignKeys\FKLecturesClassrooms.sql" />
+    <Build Include="Tables\Employees.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />

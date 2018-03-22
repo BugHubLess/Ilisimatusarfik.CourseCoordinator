@@ -2,3 +2,4 @@
 	ADD CONSTRAINT [fk_coursetranslations_courses]
 	FOREIGN KEY (CourseID)
 	REFERENCES [Courses] (CourseID)
+	
