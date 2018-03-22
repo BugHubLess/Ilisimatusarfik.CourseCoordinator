@@ -107,6 +107,9 @@
     <Build Include="StoredProcedures\Languages\SPAddLanguage.sql" />
     <Build Include="StoredProcedures\Languages\SPEditLanguage.sql" />
     <Build Include="StoredProcedures\Languages\SPDeleteLanguage.sql" />
+    <Build Include="StoredProcedures\StudyPrograms\SPAddStudyProgram.sql" />
+    <Build Include="StoredProcedures\StudyPrograms\SPEditStudyProgram.sql" />
+    <Build Include="StoredProcedures\StudyPrograms\SPDeleteStudyProgram.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />
