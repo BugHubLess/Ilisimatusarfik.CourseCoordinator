@@ -1,5 +1,6 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Models.Places
 {
+    using System;
     using System.Collections.Generic;
 
     /// <summary>
@@ -11,6 +12,6 @@
         int StudyProgramID { get; set; }
         string Name { get; set; }
         string Description { get; set; }
-        IList<ISemester> SemesterCourses { get; set; }
+        Lazy<IList<ISemester>> SemesterCourses { get; set; }
     }
 }
