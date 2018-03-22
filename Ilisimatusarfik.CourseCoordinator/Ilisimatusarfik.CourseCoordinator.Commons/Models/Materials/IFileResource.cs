@@ -1,11 +1,10 @@
-﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Materials
+﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Models.Materials
 {
     /// <summary>
-    /// A file, which is uploaded by a user, e.g. a student.
+    /// A file, which is declared in a syllabus
     /// </summary>
-    public interface IFileUpload
+    public interface IFileResource : IResource
     {
-        int FileUploadID { get; set; }
         string Filename { get; set; }
         string Extension { get; set; }
         string MimeType { get; set; }

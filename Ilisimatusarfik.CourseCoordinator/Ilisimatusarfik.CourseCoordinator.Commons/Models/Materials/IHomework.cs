@@ -1,6 +1,6 @@
-﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Materials
+﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Models.Materials
 {
-    using Ilisimatusarfik.CourseCoordinator.Commons.Places;
+    using Ilisimatusarfik.CourseCoordinator.Commons.Models.Places;
 
     public interface IHomework
     {

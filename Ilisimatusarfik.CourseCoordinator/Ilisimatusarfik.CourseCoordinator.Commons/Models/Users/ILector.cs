@@ -1,4 +1,4 @@
-﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Users
+﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Models.Users
 {
     public interface ILector : IEmployee
     {

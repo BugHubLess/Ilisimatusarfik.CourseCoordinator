@@ -1,6 +1,6 @@
-﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Places
+﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Models.Places
 {
-    using Ilisimatusarfik.CourseCoordinator.Commons.Users;
+    using Ilisimatusarfik.CourseCoordinator.Commons.Models.Users;
     using System;
     using System.Collections.Generic;
 

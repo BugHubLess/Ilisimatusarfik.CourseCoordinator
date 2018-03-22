@@ -1,6 +1,6 @@
-﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Materials
+﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Models.Materials
 {
-    using Ilisimatusarfik.CourseCoordinator.Commons.Users;
+    using Ilisimatusarfik.CourseCoordinator.Commons.Models.Users;
 
     public interface IHandin
     {

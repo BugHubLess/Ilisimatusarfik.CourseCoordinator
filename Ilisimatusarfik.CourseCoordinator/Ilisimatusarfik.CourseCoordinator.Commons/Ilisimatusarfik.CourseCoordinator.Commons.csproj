@@ -42,27 +42,28 @@
   <ItemGroup>
     <Compile Include="Actions\IEnroll.cs" />
     <Compile Include="Actions\IRollCall.cs" />
-    <Compile Include="Materials\IAssignment.cs" />
-    <Compile Include="Materials\IBook.cs" />
-    <Compile Include="Materials\IFileResource.cs" />
-    <Compile Include="Materials\IFileUpload.cs" />
-    <Compile Include="Materials\IHandin.cs" />
-    <Compile Include="Materials\IHomework.cs" />
-    <Compile Include="Materials\IInternet.cs" />
-    <Compile Include="Materials\IOther.cs" />
-    <Compile Include="Materials\IResource.cs" />
-    <Compile Include="Materials\ISyllabus.cs" />
-    <Compile Include="Places\IStudyProgram.cs" />
-    <Compile Include="Places\ISemester.cs" />
-    <Compile Include="Users\ICourseManager.cs" />
-    <Compile Include="Users\IEmployee.cs" />
-    <Compile Include="Users\ILector.cs" />
-    <Compile Include="Places\IClassroom.cs" />
-    <Compile Include="Places\ICourse.cs" />
-    <Compile Include="Places\ILecture.cs" />
+    <Compile Include="Categories\ILanguage.cs" />
+    <Compile Include="Models\Materials\IAssignment.cs" />
+    <Compile Include="Models\Materials\IBook.cs" />
+    <Compile Include="Models\Materials\IFileResource.cs" />
+    <Compile Include="Models\Materials\IFileUpload.cs" />
+    <Compile Include="Models\Materials\IHandin.cs" />
+    <Compile Include="Models\Materials\IHomework.cs" />
+    <Compile Include="Models\Materials\IInternet.cs" />
+    <Compile Include="Models\Materials\IOther.cs" />
+    <Compile Include="Models\Materials\IResource.cs" />
+    <Compile Include="Models\Materials\ISyllabus.cs" />
+    <Compile Include="Models\Places\IStudyProgram.cs" />
+    <Compile Include="Models\Places\ISemester.cs" />
+    <Compile Include="Models\Users\ICourseManager.cs" />
+    <Compile Include="Models\Users\IEmployee.cs" />
+    <Compile Include="Models\Users\ILector.cs" />
+    <Compile Include="Models\Places\IClassroom.cs" />
+    <Compile Include="Models\Places\ICourse.cs" />
+    <Compile Include="Models\Places\ILecture.cs" />
     <Compile Include="Categories\IStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Users\IStudent.cs" />
+    <Compile Include="Models\Users\IStudent.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

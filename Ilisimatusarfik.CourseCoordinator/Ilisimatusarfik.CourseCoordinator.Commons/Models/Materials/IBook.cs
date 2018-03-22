@@ -1,4 +1,4 @@
-﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Materials
+﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Models.Materials
 {
     using System;
 

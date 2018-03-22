@@ -1,4 +1,4 @@
-﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Places
+﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Models.Places
 {
     using System;
     using Ilisimatusarfik.CourseCoordinator.Commons.Categories;
