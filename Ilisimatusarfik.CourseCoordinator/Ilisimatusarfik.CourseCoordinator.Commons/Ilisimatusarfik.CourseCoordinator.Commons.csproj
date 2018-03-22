@@ -40,9 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions\IEnroll.cs" />
-    <Compile Include="Actions\IRollCall.cs" />
-    <Compile Include="Categories\ILanguage.cs" />
+    <Compile Include="Actions\Enroll.cs" />
+    <Compile Include="Actions\RollCall.cs" />
+    <Compile Include="Categories\Language.cs" />
     <Compile Include="ErrorHandling\Error.cs" />
     <Compile Include="ErrorHandling\Result.cs" />
     <Compile Include="Models\Materials\Assignment.cs" />
@@ -63,7 +63,7 @@
     <Compile Include="Models\Places\Classroom.cs" />
     <Compile Include="Models\Places\Course.cs" />
     <Compile Include="Models\Places\Lecture.cs" />
-    <Compile Include="Categories\IStatus.cs" />
+    <Compile Include="Categories\Status.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Users\Student.cs" />
     <Compile Include="Repositories\ILanguageRepository.cs" />

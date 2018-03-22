@@ -1,6 +1,6 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Actions
 {
-    public interface IEnroll
+    public class Enroll
     {
         int CourseID { get; set; }
         int StudentID { get; set; }

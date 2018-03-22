@@ -1,6 +1,6 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Actions
 {
-    public interface IRollCall
+    public class RollCall
     {
         int StudentID { get; set; }
         int LectureID { get; set; }

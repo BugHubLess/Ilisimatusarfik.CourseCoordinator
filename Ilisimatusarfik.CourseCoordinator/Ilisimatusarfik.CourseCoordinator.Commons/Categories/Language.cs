@@ -2,7 +2,7 @@
 {
     using System.Globalization;
 
-    public interface ILanguage
+    public class Language
     {
         int LanguageID { get; set; }
         CultureInfo Culture { get; set; }

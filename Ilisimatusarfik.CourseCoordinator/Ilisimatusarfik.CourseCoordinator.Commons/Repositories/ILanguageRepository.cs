@@ -7,10 +7,10 @@
 
     public interface ILanguageRepository
     {
-        Task<Result<ILanguage>> CreateLanguage(ILanguage language);
-        Task<Result<ILanguage>> GetLanguage(CultureInfo culture);
-        Task<Result<ILanguage>> GetLanguage(int languageId);
-        Task<Result> UpdateLanguage(ILanguage language);
+        Task<Result<Language>> CreateLanguage(Language language);
+        Task<Result<Language>> GetLanguage(CultureInfo culture);
+        Task<Result<Language>> GetLanguage(int languageId);
+        Task<Result> UpdateLanguage(Language language);
         Task<Result> DeleteLanguage(int languageId);
         Task<Result> DeleteLanguage(CultureInfo culture);
     }

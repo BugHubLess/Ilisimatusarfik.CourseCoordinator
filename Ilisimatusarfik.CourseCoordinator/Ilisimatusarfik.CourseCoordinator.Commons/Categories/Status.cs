@@ -1,6 +1,6 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Categories
 {
-    public interface IStatus
+    public class Status
     {
         int StatusID { get; set; }
         string Name { get; set; }
