@@ -2,3 +2,4 @@
 	ADD CONSTRAINT [fk_lectors_lectures]
 	FOREIGN KEY (LectureID)
 	REFERENCES [Lectures] (LectureID)
+	ON DELETE CASCADE
