@@ -17,7 +17,7 @@
         string Description { get; set; }
 
 
-        IList<ILecture> Lectures { get; set; }
-        IList<IStudent> Enrolled { get; set; }
+        Lazy<IList<ILecture>> Lectures { get; set; }
+        Lazy<IList<IStudent>> Enrolled { get; set; }
     }
 }
