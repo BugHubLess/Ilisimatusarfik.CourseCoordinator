@@ -45,6 +45,7 @@
     <Compile Include="Categories\Language.cs" />
     <Compile Include="ErrorHandling\Error.cs" />
     <Compile Include="ErrorHandling\Result.cs" />
+    <Compile Include="Factories\IConnectionFactory.cs" />
     <Compile Include="Models\Materials\Assignment.cs" />
     <Compile Include="Models\Materials\Book.cs" />
     <Compile Include="Models\Materials\FileResource.cs" />
@@ -70,5 +71,6 @@
     <Compile Include="Repositories\ILectureRepository.cs" />
     <Compile Include="Repositories\IStatusRepository.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -35,6 +35,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,16 +45,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\LanguageRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ilisimatusarfik.CourseCoordinator.Commons\Ilisimatusarfik.CourseCoordinator.Commons.csproj">
       <Project>{abcfd037-33da-4ff6-82f3-31dc2d05c9e0}</Project>
       <Name>Ilisimatusarfik.CourseCoordinator.Commons</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ilisimatusarfik.Database\Ilisimatusarfik.Database.sqlproj">
+      <Project>{31aab58b-4948-4639-a095-dc006114cf9a}</Project>
+      <Name>Ilisimatusarfik.Database</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
