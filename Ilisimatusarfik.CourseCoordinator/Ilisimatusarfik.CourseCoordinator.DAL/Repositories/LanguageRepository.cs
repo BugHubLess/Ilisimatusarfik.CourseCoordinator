@@ -13,6 +13,7 @@
     using System.Threading.Tasks;
     using System.Transactions;
     using Dapper;
+    using System.Net;
 
     public class LanguageRepository : ILanguageRepository
     {
@@ -45,7 +46,7 @@
                 else
                 {
                     var message = "Could not create the language in the database";
-                    return new Result<Language>.Error(new Error(System.Net.HttpStatusCode.InternalServerError, message));
+                    return new Result<Language>.Error(new Error(HttpStatusCode.InternalServerError, message));
                 }
             }
         }
