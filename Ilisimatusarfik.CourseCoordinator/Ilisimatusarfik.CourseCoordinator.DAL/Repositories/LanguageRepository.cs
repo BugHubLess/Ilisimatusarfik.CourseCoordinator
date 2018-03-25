@@ -9,11 +9,11 @@
     using System.Data;
     using System.Globalization;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using System.Transactions;
     using Dapper;
     using System.Net;
+    using System.Data.SqlClient;
 
     public class LanguageRepository : ILanguageRepository
     {
@@ -53,22 +53,86 @@
 
         public async Task<Result> DeleteLanguage(int languageId)
         {
-            throw new NotImplementedException();
+            using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            using (var connection = connectionFactory.CreateConnection())
+            {
+                var sqlParams = new
+                {
+                    languageId = languageId
+                };
+
+                var deleted = await connection.ExecuteAsync("SPDeleteLanguage", sqlParams, commandType: CommandType.StoredProcedure);
+
+                if (deleted > 0)
+                {
+                    transactionScope.Complete();
+                    return new Result.Success();
+                }
+
+                var message = "Could not delete the language from the database";
+                return new Result.Error(new Error(HttpStatusCode.InternalServerError, message));
+            }
         }
 
-        public Task<Result<Language>> GetLanguage(CultureInfo culture)
+        public async Task<Result<Language>> GetLanguage(CultureInfo culture)
         {
-            throw new NotImplementedException();
+            using (var connection = connectionFactory.CreateConnection())
+            {
+                var sqlParams = new
+                {
+                    culture = culture.ToString()
+                };
+                var language = await connection.QueryFirstOrDefaultAsync<Language>("SPGetLangauge", sqlParams, commandType: CommandType.StoredProcedure);
+
+                if(language != null)
+                {
+                    return new Result<Language>.Success(language);
+                }
+
+                var error = new Error(HttpStatusCode.NotFound, "Language does not exist in the database");
+                return new Result<Language>.Error(error);
+            }
         }
 
-        public Task<Result<IList<Language>>> GetLanguages()
+        public async Task<Result<IList<Language>>> GetLanguages()
         {
-            throw new NotImplementedException();
+            using (var connection = connectionFactory.CreateConnection())
+            {
+                try
+                {
+                    var languages = await connection.QueryAsync<Language>("SPGetAllLanguages", commandType: CommandType.StoredProcedure);
+                    return new Result<IList<Language>>.Success(languages.ToList());
+                }
+                catch (SqlException ex)
+                {
+                    var error = new Error(HttpStatusCode.InternalServerError, ex.Message);
+                    return new Result<IList<Language>>.Error(error);
+                }
+            }
         }
 
-        public Task<Result> UpdateLanguage(Language language)
+        public async Task<Result> UpdateLanguage(Language language)
         {
-            throw new NotImplementedException();
+            using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            using (var connection = connectionFactory.CreateConnection())
+            {
+                var sqlParams = new
+                {
+                    languageId = language.LanguageID,
+                    culture = language.Culture.ToString(),
+                    displayName = language.DisplayName
+                };
+                var updated = await connection.ExecuteAsync("SPEditLanguage", sqlParams, commandType: CommandType.StoredProcedure);
+
+                if(updated > 0)
+                {
+                    transactionScope.Complete();
+                    return new Result.Success();
+                }
+
+                var error = new Error(HttpStatusCode.InternalServerError, "Could not update the language");
+                return new Result.Error(error);
+            }
         }
     }
 }

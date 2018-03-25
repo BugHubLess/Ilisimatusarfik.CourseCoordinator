@@ -111,6 +111,8 @@
     <Build Include="StoredProcedures\StudyPrograms\SPEditStudyProgram.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPDeleteStudyProgram.sql" />
     <Build Include="Indices\LecturesIndexStart.sql" />
+    <Build Include="StoredProcedures\Languages\SPGetLanguage.sql" />
+    <Build Include="StoredProcedures\Languages\SPGetAllLanguages.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />
