@@ -12,6 +12,6 @@
         Task<Result<Language>> GetLanguage(CultureInfo culture);
         Task<Result<IList<Language>>> GetLanguages();
         Task<Result> UpdateLanguage(Language language);
-        Task<Result> DeleteLanguage(CultureInfo culture);
+        Task<Result> DeleteLanguage(int languageId);
     }
 }

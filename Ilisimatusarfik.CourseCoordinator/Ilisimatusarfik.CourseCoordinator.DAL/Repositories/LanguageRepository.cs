@@ -51,7 +51,7 @@
             }
         }
 
-        public Task<Result> DeleteLanguage(CultureInfo culture)
+        public async Task<Result> DeleteLanguage(int languageId)
         {
             throw new NotImplementedException();
         }
