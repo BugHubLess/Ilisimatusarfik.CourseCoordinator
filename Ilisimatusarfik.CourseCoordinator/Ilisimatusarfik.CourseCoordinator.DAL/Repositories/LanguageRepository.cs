@@ -40,12 +40,13 @@
                 if(languageId > 0)
                 {
                     transactionScope.Complete();
-                    return new Result<Language>.Success(language);
+                    return Builder.CreateSuccess(language);
                 }
                 else
                 {
                     var message = "Could not create the language in the database";
-                    return new Result<Language>.Error(new Error(HttpStatusCode.InternalServerError, message));
+                    var error = new Error(HttpStatusCode.InternalServerError, message);
+                    return Builder.CreateError(language, error);
                 }
             }
         }
@@ -65,7 +66,7 @@
                 if (deleted > 0)
                 {
                     transactionScope.Complete();
-                    return new Result.Success();
+                    return Builder.CreateSuccess();
                 }
 
                 var message = "Could not delete the language from the database";
@@ -85,11 +86,11 @@
 
                 if(language != null)
                 {
-                    return new Result<Language>.Success(language);
+                    return Builder.CreateSuccess(language);
                 }
 
                 var error = new Error(HttpStatusCode.NotFound, "Language does not exist in the database");
-                return new Result<Language>.Error(error);
+                return Builder.CreateError(language, error);
             }
         }
 
@@ -97,15 +98,17 @@
         {
             using (var connection = connectionFactory.CreateConnection())
             {
+                IList<Language> result = null;
                 try
                 {
                     var languages = await connection.QueryAsync<Language>("SPGetAllLanguages", commandType: CommandType.StoredProcedure);
-                    return new Result<IList<Language>>.Success(languages.ToList());
+                    result = languages.ToList();
+                    return Builder.CreateSuccess(result);
                 }
                 catch (SqlException ex)
                 {
                     var error = new Error(HttpStatusCode.InternalServerError, ex.Message);
-                    return new Result<IList<Language>>.Error(error);
+                    return Builder.CreateError(result, error);
                 }
             }
         }
@@ -126,7 +129,7 @@
                 if(updated > 0)
                 {
                     transactionScope.Complete();
-                    return new Result.Success();
+                    return Builder.CreateSuccess();
                 }
 
                 var error = new Error(HttpStatusCode.InternalServerError, "Could not update the language");

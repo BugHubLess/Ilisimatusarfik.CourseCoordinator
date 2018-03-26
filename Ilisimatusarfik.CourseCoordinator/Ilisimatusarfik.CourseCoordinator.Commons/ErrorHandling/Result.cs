@@ -3,6 +3,29 @@
     using System;
     using E = Ilisimatusarfik.CourseCoordinator.Commons.ErrorHandling.Error;
 
+    public static class Builder
+    {
+        public static Result<S>.Success CreateSuccess<S>(S item)
+        {
+            return new Result<S>.Success(item);
+        }
+
+        public static Result.Success CreateSuccess()
+        {
+            return new Result.Success();
+        }
+
+        public static Result<S>.Error CreateError<S>(S item, E error)
+        {
+            return new Result<S>.Error(error);
+        }
+
+        public static Result.Error CreateError(E error)
+        {
+            return new Result.Error(error);
+        }
+    }
+
     public abstract class Result<S>
     {
         public abstract T Match<T>(Func<S, T> success, Func<E, T> failure);
@@ -13,28 +36,28 @@
 
         public sealed class Success : Result<S>
         {
-            public readonly S Item;
+            private readonly S item;
 
-            public Success(S item)
+            internal Success(S item)
             {
-                Item = item;
+                this.item = item;
             }
 
-            public override T Match<T>(Func<S, T> success, Func<E, T> failure) => success(Item);
-            public override void Match(Action<S> success, Action<E> failure) => success(Item);
+            public override T Match<T>(Func<S, T> success, Func<E, T> failure) => success(item);
+            public override void Match(Action<S> success, Action<E> failure) => success(item);
         }
 
         public sealed class Error : Result<S>
         {
-            public readonly E Item;
+            private readonly E item;
 
-            public Error(E item)
+            internal Error(E item)
             {
-                Item = item;
+                this.item = item;
             }
 
-            public override T Match<T>(Func<S, T> success, Func<E, T> failure) => failure(Item);
-            public override void Match(Action<S> success, Action<E> failure) => failure(Item);
+            public override T Match<T>(Func<S, T> success, Func<E, T> failure) => failure(item);
+            public override void Match(Action<S> success, Action<E> failure) => failure(item);
         }
     }
 
@@ -47,6 +70,7 @@
 
         public sealed class Success : Result
         {
+            internal Success() { }
             public override T Match<T>(Func<T> success, Func<E, T> failure) => success();
             public override void Match(Action success, Action<E> failure) => success();
         }
