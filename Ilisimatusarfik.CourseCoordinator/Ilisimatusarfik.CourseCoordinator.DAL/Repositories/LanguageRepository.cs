@@ -1,18 +1,18 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
 {
+    using Dapper;
     using Ilisimatusarfik.CourseCoordinator.Commons.Categories;
     using Ilisimatusarfik.CourseCoordinator.Commons.ErrorHandling;
     using Ilisimatusarfik.CourseCoordinator.Commons.Factories;
     using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
     using System.Collections.Generic;
     using System.Data;
+    using System.Data.SqlClient;
     using System.Globalization;
     using System.Linq;
+    using System.Net;
     using System.Threading.Tasks;
     using System.Transactions;
-    using Dapper;
-    using System.Net;
-    using System.Data.SqlClient;
 
     public class LanguageRepository : ILanguageRepository
     {
@@ -26,7 +26,7 @@
         public async Task<Result<Language>> CreateLanguage(Language language)
         {
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-            using(var connection = connectionFactory.CreateConnection())
+            using (var connection = connectionFactory.CreateConnection())
             {
                 var sqlParams = new
                 {
@@ -37,7 +37,7 @@
 
                 language.LanguageID = languageId;
 
-                if(languageId > 0)
+                if (languageId > 0)
                 {
                     transactionScope.Complete();
                     return Builder.CreateSuccess(language);
@@ -84,7 +84,7 @@
                 };
                 var language = await connection.QueryFirstOrDefaultAsync<Language>("SPGetLangauge", sqlParams, commandType: CommandType.StoredProcedure);
 
-                if(language != null)
+                if (language != null)
                 {
                     return Builder.CreateSuccess(language);
                 }
@@ -126,7 +126,7 @@
                 };
                 var updated = await connection.ExecuteAsync("SPEditLanguage", sqlParams, commandType: CommandType.StoredProcedure);
 
-                if(updated > 0)
+                if (updated > 0)
                 {
                     transactionScope.Complete();
                     return Builder.CreateSuccess();
