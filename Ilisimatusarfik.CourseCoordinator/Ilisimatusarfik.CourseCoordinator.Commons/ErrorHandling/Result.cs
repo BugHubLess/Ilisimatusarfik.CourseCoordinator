@@ -1,7 +1,7 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.ErrorHandling
 {
     using System;
-    using E = Ilisimatusarfik.CourseCoordinator.Commons.ErrorHandling.Error;
+    using E = Error;
 
     public static class Builder
     {
