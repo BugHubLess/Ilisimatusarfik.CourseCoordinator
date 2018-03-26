@@ -42,12 +42,10 @@
                     transactionScope.Complete();
                     return Builder.CreateSuccess(language);
                 }
-                else
-                {
-                    var message = "Could not create the language in the database";
-                    var error = new Error(HttpStatusCode.InternalServerError, message);
-                    return Builder.CreateError(language, error);
-                }
+
+                var message = "Could not create the language in the database";
+                var error = new Error(HttpStatusCode.InternalServerError, message);
+                return Builder.CreateError(language, error);
             }
         }
 
