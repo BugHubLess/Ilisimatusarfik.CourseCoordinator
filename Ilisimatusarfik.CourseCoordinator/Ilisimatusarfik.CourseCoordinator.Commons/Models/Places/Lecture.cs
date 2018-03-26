@@ -1,7 +1,7 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.Commons.Models.Places
 {
-    using System;
     using Ilisimatusarfik.CourseCoordinator.Commons.Categories;
+    using System;
 
     public class Lecture : IComparable<Lecture>
     {

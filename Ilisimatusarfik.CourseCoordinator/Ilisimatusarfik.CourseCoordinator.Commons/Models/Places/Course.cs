@@ -16,7 +16,6 @@
         public string Name { get; set; }
         public string Description { get; set; }
 
-
         public Lazy<IList<Lecture>> Lectures { get; set; }
         public Lazy<IList<Student>> Enrolled { get; set; }
     }
