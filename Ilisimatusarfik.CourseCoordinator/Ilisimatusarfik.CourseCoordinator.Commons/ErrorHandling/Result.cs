@@ -5,10 +5,7 @@
 
     public abstract class Result<S>
     {
-        public abstract bool IsSuccess { get; }
-
         public abstract T Match<T>(Func<S, T> success, Func<E, T> failure);
-
         public abstract void Match(Action<S> success, Action<E> failure);
 
         // private ctor ensures no external classes can inherit
@@ -23,7 +20,6 @@
                 Item = item;
             }
 
-            public override bool IsSuccess => true;
             public override T Match<T>(Func<S, T> success, Func<E, T> failure) => success(Item);
             public override void Match(Action<S> success, Action<E> failure) => success(Item);
         }
@@ -37,7 +33,6 @@
                 Item = item;
             }
 
-            public override bool IsSuccess => false;
             public override T Match<T>(Func<S, T> success, Func<E, T> failure) => failure(Item);
             public override void Match(Action<S> success, Action<E> failure) => failure(Item);
         }
@@ -45,7 +40,6 @@
 
     public abstract class Result
     {
-        public abstract bool IsSuccess { get; }
         public abstract T Match<T>(Func<T> success, Func<E, T> failure);
         public abstract void Match(Action success, Action<E> failure);
 
@@ -53,7 +47,6 @@
 
         public sealed class Success : Result
         {
-            public override bool IsSuccess => true;
             public override T Match<T>(Func<T> success, Func<E, T> failure) => success();
             public override void Match(Action success, Action<E> failure) => success();
         }
@@ -66,7 +59,6 @@
                 Item = item;
             }
 
-            public override bool IsSuccess => false;
             public override T Match<T>(Func<T> success, Func<E, T> failure) => failure(Item);
             public override void Match(Action success, Action<E> failure) => failure(Item);
         }
