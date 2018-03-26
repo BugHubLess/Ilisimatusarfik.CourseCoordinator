@@ -4,7 +4,6 @@
     using Ilisimatusarfik.CourseCoordinator.Commons.ErrorHandling;
     using Ilisimatusarfik.CourseCoordinator.Commons.Factories;
     using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
-    using System;
     using System.Collections.Generic;
     using System.Data;
     using System.Globalization;
