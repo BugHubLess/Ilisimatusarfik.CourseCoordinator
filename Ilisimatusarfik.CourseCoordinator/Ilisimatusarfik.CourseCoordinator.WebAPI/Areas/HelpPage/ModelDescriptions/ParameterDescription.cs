@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Ilisimatusarfik.CourseCoordinator.WebAPI.Areas.HelpPage.ModelDescriptions

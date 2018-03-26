@@ -1,8 +1,8 @@
+using Ilisimatusarfik.CourseCoordinator.WebAPI.Areas.HelpPage.ModelDescriptions;
+using Ilisimatusarfik.CourseCoordinator.WebAPI.Areas.HelpPage.Models;
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using Ilisimatusarfik.CourseCoordinator.WebAPI.Areas.HelpPage.ModelDescriptions;
-using Ilisimatusarfik.CourseCoordinator.WebAPI.Areas.HelpPage.Models;
 
 namespace Ilisimatusarfik.CourseCoordinator.WebAPI.Areas.HelpPage.Controllers
 {
