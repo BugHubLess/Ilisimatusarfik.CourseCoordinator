@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -74,6 +75,15 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Ilisimatusarfik.CourseCoordinator.Commons\Ilisimatusarfik.CourseCoordinator.Commons.csproj">
+      <Project>{abcfd037-33da-4ff6-82f3-31dc2d05c9e0}</Project>
+      <Name>Ilisimatusarfik.CourseCoordinator.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ilisimatusarfik.CourseCoordinator.DAL\Ilisimatusarfik.CourseCoordinator.DAL.csproj">
+      <Project>{24d92be8-e57b-4107-a1fd-c29a912ce635}</Project>
+      <Name>Ilisimatusarfik.CourseCoordinator.DAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
