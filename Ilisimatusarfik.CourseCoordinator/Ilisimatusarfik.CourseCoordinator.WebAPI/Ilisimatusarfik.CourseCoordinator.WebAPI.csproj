@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="Controllers\LanguageController.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Setup\DependencyInjection.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -95,5 +96,6 @@
       <Name>Ilisimatusarfik.CourseCoordinator.DAL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
