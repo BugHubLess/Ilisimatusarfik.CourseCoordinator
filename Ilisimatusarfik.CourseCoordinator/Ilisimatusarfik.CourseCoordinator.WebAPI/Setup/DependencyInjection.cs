@@ -25,7 +25,8 @@
 
         private static void Register(ContainerBuilder builder)
         {
-            var connectionString = "";
+            // "Server=(localdb)\\v11.0;Integrated Security=true;"
+            var connectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             builder.Register(_ => new ConnectionFactory(connectionString)).As<IConnectionFactory>();
             builder.RegisterType<LanguageRepository>().As<ILanguageRepository>();
         }
