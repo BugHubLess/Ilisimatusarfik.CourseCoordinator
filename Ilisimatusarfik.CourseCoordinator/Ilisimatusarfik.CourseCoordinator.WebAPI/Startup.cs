@@ -1,5 +1,6 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.WebAPI
 {
+    using Ilisimatusarfik.CourseCoordinator.WebAPI.Setup;
     using Owin;
     using System.Web.Http;
 
@@ -13,6 +14,8 @@
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            DependencyInjection.Initialize(config);
 
             appBuilder.UseWebApi(config);
         }

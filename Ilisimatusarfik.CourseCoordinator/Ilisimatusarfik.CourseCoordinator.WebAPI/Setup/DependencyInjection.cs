@@ -6,6 +6,7 @@
     using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
     using Ilisimatusarfik.CourseCoordinator.DAL.Factories;
     using Ilisimatusarfik.CourseCoordinator.DAL.Repositories;
+    using Ilisimatusarfik.CourseCoordinator.WebAPI.Controllers;
     using System;
     using System.Collections.Generic;
     using System.Linq;
@@ -29,6 +30,7 @@
             var connectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             builder.Register(_ => new ConnectionFactory(connectionString)).As<IConnectionFactory>();
             builder.RegisterType<LanguageRepository>().As<ILanguageRepository>();
+            builder.RegisterType<LanguageController>();
         }
     }
 }
