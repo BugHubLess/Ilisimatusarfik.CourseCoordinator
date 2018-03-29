@@ -57,5 +57,14 @@
                 error => Request.CreateErrorResponse((HttpStatusCode)error.Status, error.Message)
             );
         }
+
+        public async Task<HttpResponseMessage> Delete(int languageId)
+        {
+            var result = await languageRepository.DeleteLanguage(languageId);
+            return result.Match(
+                () => Request.CreateResponse(HttpStatusCode.NoContent),
+                error => Request.CreateErrorResponse((HttpStatusCode)error.Status, error.Message)
+            );
+        }
     }
 }
