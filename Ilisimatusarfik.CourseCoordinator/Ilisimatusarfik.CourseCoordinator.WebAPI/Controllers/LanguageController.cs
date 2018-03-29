@@ -4,11 +4,7 @@ using System.Globalization;
 namespace Ilisimatusarfik.CourseCoordinator.WebAPI.Controllers
 {
     using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Net.Http;
-    using System.Text;
     using System.Threading.Tasks;
     using System.Web.Http;
 
@@ -30,6 +26,11 @@ namespace Ilisimatusarfik.CourseCoordinator.WebAPI.Controllers
             );
         }
 
+        // String format: kl-GL
+        // kl = ISO 639-1, languagecode
+        // GL = ISO 3166, countrycode
+        //  or instead of countrycode
+        // language tag BCP-47
         public async Task<HttpResponseMessage> Get(string culture)
         {
             var result = await languageRepository.GetLanguage(new CultureInfo(culture));
