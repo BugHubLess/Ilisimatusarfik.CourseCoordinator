@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Globalization;
 
 namespace Ilisimatusarfik.CourseCoordinator.WebAPI.Controllers
 {
@@ -25,6 +26,15 @@ namespace Ilisimatusarfik.CourseCoordinator.WebAPI.Controllers
             var result = await languageRepository.GetLanguages();
             return result.Match(
                 languages => Request.CreateResponse(languages),
+                error => Request.CreateErrorResponse((HttpStatusCode)error.Status, error.Message)
+            );
+        }
+
+        public async Task<HttpResponseMessage> Get(string culture)
+        {
+            var result = await languageRepository.GetLanguage(new CultureInfo(culture));
+            return result.Match(
+                language => Request.CreateResponse(language),
                 error => Request.CreateErrorResponse((HttpStatusCode)error.Status, error.Message)
             );
         }
