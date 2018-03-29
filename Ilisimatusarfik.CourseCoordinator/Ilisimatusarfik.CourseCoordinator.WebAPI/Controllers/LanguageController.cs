@@ -1,5 +1,6 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.WebAPI.Controllers
 {
+    using Ilisimatusarfik.CourseCoordinator.Commons.Categories;
     using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
     using System.Globalization;
     using System.Net;
@@ -35,6 +36,24 @@
             var result = await languageRepository.GetLanguage(new CultureInfo(culture));
             return result.Match(
                 language => Request.CreateResponse(language),
+                error => Request.CreateErrorResponse((HttpStatusCode)error.Status, error.Message)
+            );
+        }
+
+        public async Task<HttpResponseMessage> Post(Language language)
+        {
+            var result = await languageRepository.CreateLanguage(language);
+            return result.Match(
+                created => Request.CreateResponse(HttpStatusCode.Created, created),
+                error => Request.CreateErrorResponse((HttpStatusCode)error.Status, error.Message)
+            );
+        }
+
+        public async Task<HttpResponseMessage> Put(Language language)
+        {
+            var result = await languageRepository.UpdateLanguage(language);
+            return result.Match(
+                () => Request.CreateResponse(HttpStatusCode.NoContent),
                 error => Request.CreateErrorResponse((HttpStatusCode)error.Status, error.Message)
             );
         }
