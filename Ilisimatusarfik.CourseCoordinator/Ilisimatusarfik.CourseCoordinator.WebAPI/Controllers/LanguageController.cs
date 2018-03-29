@@ -1,9 +1,8 @@
-﻿using System.Net;
-using System.Globalization;
-
-namespace Ilisimatusarfik.CourseCoordinator.WebAPI.Controllers
+﻿namespace Ilisimatusarfik.CourseCoordinator.WebAPI.Controllers
 {
     using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
+    using System.Globalization;
+    using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
     using System.Web.Http;
