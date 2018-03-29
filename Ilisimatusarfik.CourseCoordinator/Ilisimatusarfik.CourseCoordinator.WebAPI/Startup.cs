@@ -9,12 +9,7 @@
         public void Configuration(IAppBuilder appBuilder)
         {
             HttpConfiguration config = new HttpConfiguration();
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-
+            Routes.Register(config);
             DependencyInjection.Initialize(config);
 
             appBuilder.UseWebApi(config);
