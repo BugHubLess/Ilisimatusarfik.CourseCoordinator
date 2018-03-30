@@ -1,6 +1,8 @@
 ﻿CREATE PROCEDURE [dbo].[SPDeleteStudyProgram]
 	@studyId int
 AS
+	DECLARE @ROWS INT;
 	DELETE FROM StudyPrograms
 	WHERE StudyProgramID = @studyId
-RETURN 0
+	SET @ROWS = @@ROWCOUNT;
+RETURN @ROWS
