@@ -3,7 +3,9 @@
 	@culture NVARCHAR(50),
 	@displayName NVARCHAR(50)
 AS
+	DECLARE @ROWS INT;
 	UPDATE Languages
 	SET Culture = @culture, DisplayName = @displayName
 	WHERE LanguageID = @languageId
-RETURN 0
+	SET @ROWS = @@ROWCOUNT;
+RETURN @ROWS

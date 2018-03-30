@@ -6,13 +6,15 @@
 AS
 BEGIN TRANSACTION
 BEGIN TRY
+	DECLARE @ROWS INT;
 	UPDATE StudyProgramsTranslations
 	SET LanguageID = @languageId, Name = @name, Description = @description
 	WHERE StudyProgramID = @studyId
+	SET @ROWS = @@ROWCOUNT;
 COMMIT TRANSACTION
 END TRY
 
 BEGIN CATCH
 	ROLLBACK TRANSACTION
 END CATCH
-RETURN 0
+RETURN @ROWS;
