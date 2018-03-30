@@ -42,7 +42,7 @@
                     return Builder.CreateSuccess(language);
                 }
 
-                var message = "Could not create the language in the database";
+                const string message = "Could not create the language in the database";
                 var error = new Error(HttpStatusCode.InternalServerError, message);
                 return Builder.CreateError(language, error);
             }
@@ -66,7 +66,7 @@
                     return Builder.CreateSuccess();
                 }
 
-                var message = "Could not delete the language from the database";
+                const string message = "Could not delete the language from the database";
                 return new Result.Error(new Error(HttpStatusCode.InternalServerError, message));
             }
         }
