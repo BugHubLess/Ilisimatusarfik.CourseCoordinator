@@ -8,9 +8,7 @@
 
     public interface IStatusRepository
     {
-        Task<Result<Status>> CreateNewStatus(Status status, CultureInfo culture);
-
-        Task<Result> AddStatusTranslation(Status status, CultureInfo culture);
+        Task<Result<Status>> CreateStatus(Status status, CultureInfo culture);
 
         Task<Result<IList<Status>>> GetAllStatus(Status status, CultureInfo culture);
 
