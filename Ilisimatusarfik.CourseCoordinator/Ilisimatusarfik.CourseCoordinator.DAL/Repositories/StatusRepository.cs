@@ -72,8 +72,8 @@
                     name = status.Name
                 };
 
-                var result = await connection.ExecuteAsync("SPUpdateOrAddStatusTranslation", sqlParams, commandType: CommandType.StoredProcedure);
-                if(result == 1)
+                var rows = await connection.ExecuteAsync("SPUpdateOrAddStatusTranslation", sqlParams, commandType: CommandType.StoredProcedure);
+                if(rows == 1)
                 {
                     transactionScope.Complete();
                     return Builder.CreateSuccess();
