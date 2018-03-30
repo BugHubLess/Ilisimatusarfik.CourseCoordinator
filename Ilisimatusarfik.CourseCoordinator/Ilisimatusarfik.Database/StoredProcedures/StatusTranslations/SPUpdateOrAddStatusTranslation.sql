@@ -1,21 +1,24 @@
 ﻿CREATE PROCEDURE [dbo].[SPUpdateOrAddStatusTranslation]
-	@statusId int,
-	@languageId int,
-	@name nvarchar
+	@statusId INT,
+	@culture NVARCHAR(MAX),
+	@name NVARCHAR(MAX)
 AS
 BEGIN TRANSACTION
 BEGIN TRY
-	UPDATE StatusTranslations
+	UPDATE ST
 	SET Name = @name
-	WHERE StatusID = @statusId AND LanguageID = @languageId
+	FROM StatusTranslations ST
+	INNER JOIN Languages L
+	ON ST.LanguageID = L.LanguageID
+	WHERE ST.StatusID = @statusId AND L.Culture = @culture
 
 	IF @@ROWCOUNT = 0
 	INSERT INTO StatusTranslations (StatusID, LanguageID, Name)
-	VALUES (@statusId, @languageId, @name)
+	SELECT @statusId, LanguageID, @name FROM Languages WHERE Culture = @culture
 COMMIT TRANSACTION
 END TRY
 
 BEGIN CATCH
 	ROLLBACK TRANSACTION
 END CATCH
-RETURN 0
+RETURN @@ROWCOUNT  -- returns the number of rows affected
