@@ -116,6 +116,7 @@
     <Build Include="StoredProcedures\Languages\SPGetAllLanguages.sql" />
     <Build Include="ForeignKeys\FKStatusTranslationLanguages.sql" />
     <Build Include="StoredProcedures\StatusTranslations\SPCreateStatusTranslation.sql" />
+    <Build Include="StoredProcedures\StatusTranslations\SPUpdateOrAddStatusTranslation.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />
