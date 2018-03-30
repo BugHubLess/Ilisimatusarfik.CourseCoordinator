@@ -5,6 +5,7 @@
 AS
 BEGIN TRANSACTION
 BEGIN TRY
+	DECLARE @ROWS INT;
 	UPDATE ST
 	SET Name = @name
 	FROM StatusTranslations ST
@@ -12,13 +13,19 @@ BEGIN TRY
 	ON ST.LanguageID = L.LanguageID
 	WHERE ST.StatusID = @statusId AND L.Culture = @culture
 
-	IF @@ROWCOUNT = 0
-	INSERT INTO StatusTranslations (StatusID, LanguageID, Name)
-	SELECT @statusId, LanguageID, @name FROM Languages WHERE Culture = @culture
+	SET @ROWS = @@ROWCOUNT;
+
+	IF @ROWS = 0
+	BEGIN
+		INSERT INTO StatusTranslations (StatusID, LanguageID, Name)
+		SELECT @statusId, LanguageID, @name FROM Languages WHERE Culture = @culture
+		SET @ROWS = @@ROWCOUNT;
+	END
+
 COMMIT TRANSACTION
 END TRY
 
 BEGIN CATCH
 	ROLLBACK TRANSACTION
 END CATCH
-RETURN @@ROWCOUNT  -- returns the number of rows affected
+RETURN @ROWS  -- returns the number of rows affected
