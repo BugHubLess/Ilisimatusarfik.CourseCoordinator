@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[SPGetLanguage]
-	@culture nvarchar(50)
+	@locale nvarchar(50)
 AS
-	SELECT LanguageID, Culture, DisplayName
+	SELECT LanguageID, Locale, DisplayName
 	FROM Languages
-	WHERE Culture = @culture
+	WHERE Locale = @locale
 RETURN 0

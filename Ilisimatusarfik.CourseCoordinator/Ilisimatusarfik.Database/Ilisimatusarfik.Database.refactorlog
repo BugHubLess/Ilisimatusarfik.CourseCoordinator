@@ -119,4 +119,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="CourseID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="841452bc-7923-46e4-8945-6ad86f7dd403" ChangeDateTime="03/30/2018 23:27:31">
+    <Property Name="ElementName" Value="[dbo].[Languages].[Culture]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Languages]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Locale" />
+  </Operation>
 </Operations>

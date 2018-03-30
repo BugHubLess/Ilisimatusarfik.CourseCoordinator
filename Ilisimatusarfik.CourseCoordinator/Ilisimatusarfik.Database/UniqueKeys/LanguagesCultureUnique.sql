@@ -1,3 +1,3 @@
 ﻿ALTER TABLE [dbo].[Languages]
 	ADD CONSTRAINT [uc_culture]
-	UNIQUE (Culture)
+	UNIQUE ([Locale])

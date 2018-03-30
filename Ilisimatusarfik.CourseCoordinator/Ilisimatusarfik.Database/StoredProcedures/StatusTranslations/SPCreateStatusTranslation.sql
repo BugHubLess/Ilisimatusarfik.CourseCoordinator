@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[SPCreateStatusTranslation]
-	@culture NVARCHAR(50),
+	@locale NVARCHAR(50),
 	@name NVARCHAR(MAX)
 AS
 BEGIN TRANSACTION
@@ -8,7 +8,7 @@ BEGIN TRY
 	INSERT Status DEFAULT VALUES -- This will set SCOPE_IDENTITY
 	SET @ID = SCOPE_IDENTITY();
 	INSERT INTO StatusTranslations (StatusID, LanguageID, Name)
-	SELECT @ID, LanguageID, @name FROM Languages WHERE Culture = @culture
+	SELECT @ID, LanguageID, @name FROM Languages WHERE Locale = @locale
 COMMIT TRANSACTION
 END TRY
 

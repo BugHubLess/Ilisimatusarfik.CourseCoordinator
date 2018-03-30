@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[SPUpdateOrAddStatusTranslation]
 	@statusId INT,
-	@culture NVARCHAR(50),
+	@locale NVARCHAR(50),
 	@name NVARCHAR(MAX)
 AS
 BEGIN TRANSACTION
@@ -11,14 +11,14 @@ BEGIN TRY
 	FROM StatusTranslations ST
 	INNER JOIN Languages L
 	ON ST.LanguageID = L.LanguageID
-	WHERE ST.StatusID = @statusId AND L.Culture = @culture
+	WHERE ST.StatusID = @statusId AND L.Locale = @locale
 
 	SET @ROWS = @@ROWCOUNT;
 
 	IF @ROWS = 0
 	BEGIN
 		INSERT INTO StatusTranslations (StatusID, LanguageID, Name)
-		SELECT @statusId, LanguageID, @name FROM Languages WHERE Culture = @culture
+		SELECT @statusId, LanguageID, @name FROM Languages WHERE Locale = @locale
 		SET @ROWS = @@ROWCOUNT;
 	END
 

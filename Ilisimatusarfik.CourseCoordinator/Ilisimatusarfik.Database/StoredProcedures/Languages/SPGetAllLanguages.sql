@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[SPGetAllLanguages]
 AS
-	SELECT LanguageID, Culture, DisplayName
+	SELECT LanguageID, Locale, DisplayName
 	FROM Languages
 RETURN 0
