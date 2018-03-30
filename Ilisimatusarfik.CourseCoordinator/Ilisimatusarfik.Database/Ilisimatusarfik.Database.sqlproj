@@ -118,6 +118,7 @@
     <Build Include="StoredProcedures\StatusTranslations\SPCreateStatusTranslation.sql" />
     <Build Include="StoredProcedures\StatusTranslations\SPUpdateOrAddStatusTranslation.sql" />
     <Build Include="StoredProcedures\StatusTranslations\SPGetStatusTranslation.sql" />
+    <Build Include="StoredProcedures\StatusTranslations\SPGetStatusTranslations.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />
