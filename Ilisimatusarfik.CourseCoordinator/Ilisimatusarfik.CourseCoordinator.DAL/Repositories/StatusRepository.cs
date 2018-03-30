@@ -29,7 +29,7 @@
                 var sqlParams = new
                 {
                     name = status.Name,
-                    culture = locale
+                    locale = locale
                 };
 
                 var id = await connection.ExecuteScalarAsync<int>("SPCreateStatusTranslation", sqlParams, commandType: CommandType.StoredProcedure);
@@ -68,7 +68,7 @@
                 var sqlParams = new
                 {
                     statusId = status.StatusID,
-                    culture = locale,
+                    locale = locale,
                     name = status.Name
                 };
 
