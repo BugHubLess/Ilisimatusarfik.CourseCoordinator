@@ -8,7 +8,6 @@
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
-    using System.Globalization;
     using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
@@ -30,7 +29,7 @@
             {
                 var sqlParams = new
                 {
-                    culture = language.Culture.ToString(),
+                    culture = language.Locale,
                     displayName = language.DisplayName
                 };
                 var languageId = await connection.ExecuteScalarAsync<int>("SPAddLanguage", sqlParams, commandType: CommandType.StoredProcedure);
@@ -72,13 +71,13 @@
             }
         }
 
-        public async Task<Result<Language>> GetLanguage(CultureInfo culture)
+        public async Task<Result<Language>> GetLanguage(string locale)
         {
             using (var connection = connectionFactory.CreateConnection())
             {
                 var sqlParams = new
                 {
-                    culture = culture.ToString()
+                    culture = locale
                 };
                 var language = await connection.QueryFirstOrDefaultAsync<Language>("SPGetLangauge", sqlParams, commandType: CommandType.StoredProcedure);
 
@@ -119,7 +118,7 @@
                 var sqlParams = new
                 {
                     languageId = language.LanguageID,
-                    culture = language.Culture.ToString(),
+                    culture = language.Locale,
                     displayName = language.DisplayName
                 };
                 var updated = await connection.ExecuteAsync("SPEditLanguage", sqlParams, commandType: CommandType.StoredProcedure);

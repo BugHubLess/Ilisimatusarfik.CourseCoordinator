@@ -3,14 +3,13 @@
     using Ilisimatusarfik.CourseCoordinator.Commons.Categories;
     using Ilisimatusarfik.CourseCoordinator.Commons.ErrorHandling;
     using System.Collections.Generic;
-    using System.Globalization;
     using System.Threading.Tasks;
 
     public interface ILanguageRepository
     {
         Task<Result<Language>> CreateLanguage(Language language);
 
-        Task<Result<Language>> GetLanguage(CultureInfo culture);
+        Task<Result<Language>> GetLanguage(string locale);
 
         Task<Result<IList<Language>>> GetLanguages();
 

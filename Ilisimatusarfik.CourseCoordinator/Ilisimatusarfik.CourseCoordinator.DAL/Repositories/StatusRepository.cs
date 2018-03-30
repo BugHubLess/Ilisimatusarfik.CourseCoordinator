@@ -6,9 +6,6 @@
     using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
     using System;
     using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
     using System.Transactions;
     using Dapper;
@@ -24,7 +21,7 @@
             this.connectionFactory = connectionFactory;
         }
 
-        public async Task<Result<Status>> CreateStatus(Status status, CultureInfo culture)
+        public async Task<Result<Status>> CreateStatus(Status status, string locale)
         {
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
@@ -32,10 +29,10 @@
                 var sqlParams = new
                 {
                     name = status.Name,
-                    culture = culture.ToString()
+                    culture = locale
                 };
 
-                var id = await connection.ExecuteAsync("SPCreateStatusTranslation", sqlParams, commandType: CommandType.StoredProcedure);
+                var id = await connection.ExecuteScalarAsync<int>("SPCreateStatusTranslation", sqlParams, commandType: CommandType.StoredProcedure);
                 if(id > 0)
                 {
                     transactionScope.Complete();
@@ -53,19 +50,38 @@
             throw new NotImplementedException();
         }
 
-        public Task<Result<IList<Status>>> GetAllStatus(Status status, CultureInfo culture)
+        public Task<Result<IList<Status>>> GetAllStatus(Status status, string locale)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Result<Status>> GetStatus(int statusId, CultureInfo culture)
+        public Task<Result<Status>> GetStatus(int statusId, string locale)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Result<Status>> TranslateStatus(Status status, CultureInfo culture)
+        public async Task<Result> TranslateStatus(Status status, string locale)
         {
-            throw new NotImplementedException();
+            using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            using (var connection = connectionFactory.CreateConnection())
+            {
+                var sqlParams = new
+                {
+                    statusId = status.StatusID,
+                    culture = locale,
+                    name = status.Name
+                };
+
+                var result = await connection.ExecuteAsync("SPUpdateOrAddStatusTranslation", sqlParams, commandType: CommandType.StoredProcedure);
+                if(result == 1)
+                {
+                    transactionScope.Complete();
+                    return Builder.CreateSuccess();
+                }
+
+                var error = new Error(HttpStatusCode.InternalServerError, $"Could not update or create a translation for status with ID: {status.StatusID}");
+                return Builder.CreateError(error);
+            }
         }
     }
 }

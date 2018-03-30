@@ -14,20 +14,21 @@
         /// <param name="status">The translation status</param>
         /// <param name="culture">The language</param>
         /// <returns>A result of the created status</returns>
-        Task<Result<Status>> CreateStatus(Status status, CultureInfo culture);
+        Task<Result<Status>> CreateStatus(Status status, string locale);
 
         /// <summary>
         /// Updates an existing translation or inserts a new translation
         /// for an existing status.
+        /// Note: that the status text should exist for another language!
         /// </summary>
         /// <param name="status">The translation status must exist</param>
         /// <param name="culture">The language must exist</param>
         /// <returns>A result of the translated status</returns>
-        Task<Result<Status>> TranslateStatus(Status status, CultureInfo culture);
+        Task<Result> TranslateStatus(Status status, string locale);
 
-        Task<Result<IList<Status>>> GetAllStatus(Status status, CultureInfo culture);
+        Task<Result<IList<Status>>> GetAllStatus(Status status, string locale);
 
-        Task<Result<Status>> GetStatus(int statusId, CultureInfo culture);
+        Task<Result<Status>> GetStatus(int statusId, string locale);
 
         Task<Result> DeleteStatus(int statusId);
     }

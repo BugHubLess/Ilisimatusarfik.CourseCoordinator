@@ -31,9 +31,9 @@
         // GL = ISO 3166, countrycode
         //  or instead of countrycode
         // language tag BCP-47
-        public async Task<HttpResponseMessage> Get(string culture)
+        public async Task<HttpResponseMessage> Get(string locale)
         {
-            var result = await languageRepository.GetLanguage(new CultureInfo(culture));
+            var result = await languageRepository.GetLanguage(locale);
             return result.Match(
                 language => Request.CreateResponse(language),
                 error => Request.CreateErrorResponse((HttpStatusCode)error.Status, error.Message)
