@@ -4,7 +4,7 @@
 AS
 BEGIN TRANSACTION
 BEGIN TRY
-	INSERT Status DEFAULT VALUES
+	INSERT Status DEFAULT VALUES -- This will set SCOPE_IDENTITY
 	INSERT INTO StatusTranslations (StatusID, LanguageID, Name)
 	SELECT SCOPE_IDENTITY(), LanguageID, @name FROM Languages WHERE Culture = @culture
 COMMIT TRANSACTION
