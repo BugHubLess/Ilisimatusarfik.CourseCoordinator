@@ -7,4 +7,4 @@ CREATE PROCEDURE [dbo].[SPAddLanguage]
 AS
 	INSERT INTO Languages (Culture, DisplayName)
 	VALUES (@culture, @displayname)
-RETURN @@IDENTITY
+RETURN SCOPE_IDENTITY()

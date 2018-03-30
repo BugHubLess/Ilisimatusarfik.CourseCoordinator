@@ -7,11 +7,11 @@ BEGIN TRANSACTION
 BEGIN TRY
 	INSERT StudyPrograms DEFAULT VALUES
 	INSERT INTO StudyProgramsTranslations (StudyProgramID, LanguageID, Name, Description)
-	VALUES (@@IDENTITY, @languageId, @name, @description)
+	VALUES (SCOPE_IDENTITY(), @languageId, @name, @description)
 COMMIT TRANSACTION
 END TRY
 
 BEGIN CATCH
 	ROLLBACK TRANSACTION
 END CATCH
-RETURN @@IDENTITY
+RETURN SCOPE_IDENTITY()
