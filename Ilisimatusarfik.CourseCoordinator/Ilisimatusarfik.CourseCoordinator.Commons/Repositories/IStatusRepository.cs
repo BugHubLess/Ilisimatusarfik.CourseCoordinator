@@ -17,18 +17,17 @@
         Task<Result<Status>> CreateStatus(Status status, CultureInfo culture);
 
         /// <summary>
-        /// Translate an existing status.
+        /// Updates an existing translation or inserts a new translation
+        /// for an existing status.
         /// </summary>
-        /// <param name="status">The translation status</param>
-        /// <param name="culture">The language</param>
+        /// <param name="status">The translation status must exist</param>
+        /// <param name="culture">The language must exist</param>
         /// <returns>A result of the translated status</returns>
         Task<Result<Status>> TranslateStatus(Status status, CultureInfo culture);
 
         Task<Result<IList<Status>>> GetAllStatus(Status status, CultureInfo culture);
 
         Task<Result<Status>> GetStatus(int statusId, CultureInfo culture);
-
-        Task<Result> UpdateStatus(Status status, CultureInfo culture);
 
         Task<Result> DeleteStatus(int statusId);
     }
