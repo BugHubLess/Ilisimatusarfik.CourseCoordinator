@@ -79,7 +79,8 @@
                     return Builder.CreateSuccess();
                 }
 
-                var error = new Error(HttpStatusCode.InternalServerError, $"Could not update or create a translation for status with ID: {status.StatusID}");
+                var message = $"Could not update or create a translation for status with ID: {status.StatusID}\nPossible reasons:\n1 - The status does not exist\n2 - Unexpected SQL error";
+                var error = new Error(HttpStatusCode.InternalServerError, message);
                 return Builder.CreateError(error);
             }
         }
