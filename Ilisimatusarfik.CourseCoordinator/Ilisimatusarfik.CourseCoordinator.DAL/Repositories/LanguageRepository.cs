@@ -29,7 +29,7 @@
             {
                 var sqlParams = new
                 {
-                    culture = language.Locale,
+                    locale = language.Locale,
                     displayName = language.DisplayName
                 };
                 var languageId = await connection.ExecuteScalarAsync<int>("SPAddLanguage", sqlParams, commandType: CommandType.StoredProcedure);
@@ -77,7 +77,7 @@
             {
                 var sqlParams = new
                 {
-                    culture = locale
+                    locale = locale
                 };
                 var language = await connection.QueryFirstOrDefaultAsync<Language>("SPGetLangauge", sqlParams, commandType: CommandType.StoredProcedure);
 
@@ -118,7 +118,7 @@
                 var sqlParams = new
                 {
                     languageId = language.LanguageID,
-                    culture = language.Locale,
+                    locale = language.Locale,
                     displayName = language.DisplayName
                 };
                 var updated = await connection.ExecuteAsync("SPEditLanguage", sqlParams, commandType: CommandType.StoredProcedure);
