@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[SPUpdateOrAddStatusTranslation]
 	@statusId INT,
-	@culture NVARCHAR(MAX),
+	@culture NVARCHAR(50),
 	@name NVARCHAR(MAX)
 AS
 BEGIN TRANSACTION

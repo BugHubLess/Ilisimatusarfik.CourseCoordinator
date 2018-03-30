@@ -1,6 +1,6 @@
 ﻿CREATE PROCEDURE [dbo].[SPCreateStatusTranslation]
-	@culture nvarchar,
-	@name nvarchar
+	@culture NVARCHAR(50),
+	@name NVARCHAR(MAX)
 AS
 BEGIN TRANSACTION
 BEGIN TRY

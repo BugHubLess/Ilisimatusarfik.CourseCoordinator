@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[SPEditLanguage]
 	@languageId int,
-	@culture nvarchar,
-	@displayName nvarchar
+	@culture NVARCHAR(50),
+	@displayName NVARCHAR(50)
 AS
 	UPDATE Languages
 	SET Culture = @culture, DisplayName = @displayName

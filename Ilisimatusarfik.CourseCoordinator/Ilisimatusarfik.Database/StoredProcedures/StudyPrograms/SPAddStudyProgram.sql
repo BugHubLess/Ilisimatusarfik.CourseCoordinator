@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[SPAddStudyProgram]
 	@languageId int,
-	@name nvarchar,
-	@description nvarchar
+	@name NVARCHAR(MAX),
+	@description NVARCHAR(MAX)
 AS
 BEGIN TRANSACTION
 BEGIN TRY
