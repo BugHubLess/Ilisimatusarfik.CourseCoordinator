@@ -25,7 +25,7 @@
         /// <returns>A result of the translated status</returns>
         Task<Result> TranslateStatus(Status status, string locale);
 
-        Task<Result<IList<Status>>> GetAllStatus(Status status, string locale);
+        Task<Result<IList<Status>>> GetAllStatus(string locale);
 
         Task<Result<Status>> GetStatus(int statusId, string locale);
 

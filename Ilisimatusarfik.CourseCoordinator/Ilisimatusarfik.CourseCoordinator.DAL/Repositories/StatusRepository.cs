@@ -4,13 +4,13 @@
     using Ilisimatusarfik.CourseCoordinator.Commons.ErrorHandling;
     using Ilisimatusarfik.CourseCoordinator.Commons.Factories;
     using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Transactions;
     using Dapper;
     using System.Data;
     using System.Net;
+    using System.Linq;
 
     public class StatusRepository : IStatusRepository
     {
@@ -45,19 +45,59 @@
             }
         }
 
-        public Task<Result> DeleteStatus(int statusId)
+        public async Task<Result> DeleteStatus(int statusId)
         {
-            throw new NotImplementedException();
+            using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            using (var connection = connectionFactory.CreateConnection())
+            {
+                var sqlParams = new
+                {
+                    statusId = statusId
+                };
+                var rows = await connection.ExecuteAsync("SPDeleteStatusTranslations", sqlParams, commandType: CommandType.StoredProcedure);
+                if(rows == 1)
+                {
+                    transactionScope.Complete();
+                    return Builder.CreateSuccess();
+                }
+
+                var message = $"Could not delete the status with ID: {statusId}";
+                var error = new Error(HttpStatusCode.InternalServerError, message);
+                return Builder.CreateError(error);
+            }
         }
 
-        public Task<Result<IList<Status>>> GetAllStatus(Status status, string locale)
+        public async Task<Result<IList<Status>>> GetAllStatus(string locale)
         {
-            throw new NotImplementedException();
+            using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            using (var connection = connectionFactory.CreateConnection())
+            {
+                var sqlParams = new
+                {
+                    locale = locale
+                };
+
+                var query = await connection.QueryAsync<Status>("SPGetStatusTranslations", sqlParams, commandType: CommandType.StoredProcedure);
+                IList<Status> result = query.ToList();
+
+                return Builder.CreateSuccess(result);
+            }
         }
 
-        public Task<Result<Status>> GetStatus(int statusId, string locale)
+        public async Task<Result<Status>> GetStatus(int statusId, string locale)
         {
-            throw new NotImplementedException();
+            using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            using (var connection = connectionFactory.CreateConnection())
+            {
+                var sqlParams = new
+                {
+                    statusId = statusId,
+                    locale = locale
+                };
+
+                var result = await connection.QueryFirstOrDefaultAsync<Status>("SPGetStatusTranslation", sqlParams, commandType: CommandType.StoredProcedure);
+                return Builder.CreateSuccess(result);
+            }
         }
 
         public async Task<Result> TranslateStatus(Status status, string locale)
