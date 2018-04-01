@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[SPAddStudyProgram]
-	@languageId int,
+	@locale NVARCHAR(50),
 	@name NVARCHAR(MAX),
 	@description NVARCHAR(MAX)
 AS
@@ -9,7 +9,7 @@ BEGIN TRY
 	INSERT StudyPrograms DEFAULT VALUES
 	SET @ID = SCOPE_IDENTITY();
 	INSERT INTO StudyProgramsTranslations (StudyProgramID, LanguageID, Name, Description)
-	VALUES (@ID, @languageId, @name, @description)
+	SELECT @ID, LanguageID, @name, @description FROM Languages WHERE Locale = @locale
 COMMIT TRANSACTION
 END TRY
 
