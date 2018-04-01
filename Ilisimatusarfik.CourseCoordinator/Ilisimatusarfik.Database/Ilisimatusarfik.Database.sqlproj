@@ -121,6 +121,7 @@
     <Build Include="StoredProcedures\StatusTranslations\SPGetStatusTranslations.sql" />
     <Build Include="StoredProcedures\StatusTranslations\SPDeleteStatusTranslations.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPGetStudyProgram.sql" />
+    <Build Include="StoredProcedures\StudyPrograms\SPGetStudyPrograms.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />
