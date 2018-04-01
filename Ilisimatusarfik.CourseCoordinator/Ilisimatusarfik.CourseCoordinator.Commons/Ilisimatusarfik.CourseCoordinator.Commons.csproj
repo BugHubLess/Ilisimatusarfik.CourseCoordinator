@@ -70,6 +70,7 @@
     <Compile Include="Repositories\ILanguageRepository.cs" />
     <Compile Include="Repositories\ILectureRepository.cs" />
     <Compile Include="Repositories\IStatusRepository.cs" />
+    <Compile Include="Repositories\IStudyProgramRepository.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
