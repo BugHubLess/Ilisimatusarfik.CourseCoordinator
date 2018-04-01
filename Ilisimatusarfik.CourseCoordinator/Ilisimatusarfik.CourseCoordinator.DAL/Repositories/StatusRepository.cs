@@ -69,7 +69,6 @@
 
         public async Task<Result<IList<Status>>> GetAllStatus(string locale)
         {
-            using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
             {
                 var sqlParams = new
@@ -86,7 +85,6 @@
 
         public async Task<Result<Status>> GetStatus(int statusId, string locale)
         {
-            using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
             {
                 var sqlParams = new
