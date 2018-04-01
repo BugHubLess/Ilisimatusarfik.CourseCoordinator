@@ -5,13 +5,15 @@
 AS
 BEGIN TRANSACTION
 BEGIN TRY
+	DECLARE @ID INT;
 	INSERT StudyPrograms DEFAULT VALUES
+	SET @ID = SCOPE_IDENTITY();
 	INSERT INTO StudyProgramsTranslations (StudyProgramID, LanguageID, Name, Description)
-	VALUES (SCOPE_IDENTITY(), @languageId, @name, @description)
+	VALUES (@ID, @languageId, @name, @description)
 COMMIT TRANSACTION
 END TRY
 
 BEGIN CATCH
 	ROLLBACK TRANSACTION
 END CATCH
-RETURN SCOPE_IDENTITY()
+RETURN @ID
