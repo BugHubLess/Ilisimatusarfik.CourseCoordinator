@@ -109,7 +109,6 @@
     <Build Include="StoredProcedures\Languages\SPEditLanguage.sql" />
     <Build Include="StoredProcedures\Languages\SPDeleteLanguage.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPAddStudyProgram.sql" />
-    <Build Include="StoredProcedures\StudyPrograms\SPEditStudyProgram.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPDeleteStudyProgram.sql" />
     <Build Include="Indices\LecturesIndexStart.sql" />
     <Build Include="StoredProcedures\Languages\SPGetLanguage.sql" />
