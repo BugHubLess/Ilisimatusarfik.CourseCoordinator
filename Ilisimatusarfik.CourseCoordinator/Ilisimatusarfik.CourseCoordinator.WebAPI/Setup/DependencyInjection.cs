@@ -7,11 +7,6 @@
     using Ilisimatusarfik.CourseCoordinator.DAL.Factories;
     using Ilisimatusarfik.CourseCoordinator.DAL.Repositories;
     using Ilisimatusarfik.CourseCoordinator.WebAPI.Controllers;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
     using System.Web.Http;
 
     public static class DependencyInjection
@@ -29,8 +24,14 @@
             // "Server=(localdb)\\v11.0;Integrated Security=true;"
             var connectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=Ilisimatusarfik.Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             builder.Register(_ => new ConnectionFactory(connectionString)).As<IConnectionFactory>();
-            builder.RegisterType<LanguageRepository>().As<ILanguageRepository>();
+
+            // Controllers
             builder.RegisterType<LanguageController>();
+
+            // Repositories
+            builder.RegisterType<LanguageRepository>().As<ILanguageRepository>();
+            builder.RegisterType<StatusRepository>().As<IStatusRepository>();
+            builder.RegisterType<StudyProgramRepository>().As<IStudyProgramRepository>();
         }
     }
 }
