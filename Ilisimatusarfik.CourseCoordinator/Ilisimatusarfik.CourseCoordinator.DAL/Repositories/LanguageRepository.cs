@@ -79,7 +79,7 @@
                 {
                     locale = locale
                 };
-                var language = await connection.QueryFirstOrDefaultAsync<Language>("SPGetLangauge", sqlParams, commandType: CommandType.StoredProcedure);
+                var language = await connection.QueryFirstOrDefaultAsync<Language>("SPGetLanguage", sqlParams, commandType: CommandType.StoredProcedure);
 
                 if (language != null)
                 {
