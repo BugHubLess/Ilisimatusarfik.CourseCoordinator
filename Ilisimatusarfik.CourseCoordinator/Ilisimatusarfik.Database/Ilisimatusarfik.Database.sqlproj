@@ -125,6 +125,7 @@
     <Build Include="StoredProcedures\StudyPrograms\SPUpdateOrAddStudyProgramTranslation.sql" />
     <Build Include="StoredProcedures\Courses\SPGetCoursesByStudyProgram.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPGetSemesterCoursesByStudyProgram.sql" />
+    <Build Include="StoredProcedures\StudyPrograms\SPAddOrUpdateCourseToStudyProgram.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />
