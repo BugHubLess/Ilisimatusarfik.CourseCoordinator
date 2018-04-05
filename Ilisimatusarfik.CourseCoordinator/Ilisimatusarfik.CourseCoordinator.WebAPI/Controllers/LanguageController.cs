@@ -2,7 +2,6 @@
 {
     using Ilisimatusarfik.CourseCoordinator.Commons.Categories;
     using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
-    using System.Globalization;
     using System.Net;
     using System.Net.Http;
     using System.Threading.Tasks;
@@ -34,6 +33,7 @@
         public async Task<HttpResponseMessage> Get(string locale)
         {
             var result = await languageRepository.GetLanguage(locale);
+
             return result.Match(
                 language => Request.CreateResponse(language),
                 error => Request.CreateErrorResponse((HttpStatusCode)error.Status, error.Message)
