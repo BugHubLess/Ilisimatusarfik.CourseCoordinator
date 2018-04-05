@@ -66,6 +66,7 @@
     <Folder Include="StoredProcedures\Languages" />
     <Folder Include="StoredProcedures\StudyPrograms" />
     <Folder Include="StoredProcedures\StatusTranslations" />
+    <Folder Include="StoredProcedures\Courses" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Languages.sql" />
@@ -122,6 +123,8 @@
     <Build Include="StoredProcedures\StudyPrograms\SPGetStudyProgram.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPGetStudyPrograms.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPUpdateOrAddStudyProgramTranslation.sql" />
+    <Build Include="StoredProcedures\Courses\SPGetCoursesByStudyProgram.sql" />
+    <Build Include="StoredProcedures\StudyPrograms\SPGetSemesterCoursesByStudyProgram.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />

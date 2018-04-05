@@ -1,8 +1,10 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Net;
 
 namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
 {
+    using Dapper;
     using Ilisimatusarfik.CourseCoordinator.Commons.ErrorHandling;
     using Ilisimatusarfik.CourseCoordinator.Commons.Factories;
     using Ilisimatusarfik.CourseCoordinator.Commons.Models.Places;
@@ -11,7 +13,6 @@ namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
     using System.Linq;
     using System.Threading.Tasks;
     using System.Transactions;
-    using Dapper;
 
     public class StudyProgramRepository : IStudyProgramRepository
     {
@@ -20,6 +21,11 @@ namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
         public StudyProgramRepository(IConnectionFactory connectionFactory)
         {
             this.connectionFactory = connectionFactory;
+        }
+
+        public Task<Result> AddCourseToProgram(int studProgramId, Course course)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<Result<StudyProgram>> CreateStudyProgram(StudyProgram studyProgram, string locale)
@@ -36,7 +42,7 @@ namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
 
                 var id = await connection.ExecuteScalarAsync<int>("SPAddStudyProgram", sqlParams, commandType: CommandType.StoredProcedure);
 
-                if(id > 0)
+                if (id > 0)
                 {
                     transactionScope.Complete();
                     studyProgram.StudyProgramID = id;
@@ -61,7 +67,7 @@ namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
 
                 var rows = await connection.ExecuteAsync("SPDeleteStudyProgram", sqlParams, commandType: CommandType.StoredProcedure);
 
-                if( rows == 1)
+                if (rows == 1)
                 {
                     transactionScope.Complete();
                     return Builder.CreateSuccess();
@@ -83,9 +89,38 @@ namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
                 };
 
                 var query = await connection.QueryAsync<StudyProgram>("SPGetStudyPrograms", sqlParams, commandType: CommandType.StoredProcedure);
-                IList<StudyProgram> result = query.ToList();
 
+                foreach (var studyProgram in query)
+                {
+                    studyProgram.SemesterCourses = GetSemesters(studyProgram.StudyProgramID, locale);
+                }
+
+                IList<StudyProgram> result = query.ToList();
                 return Builder.CreateSuccess(result);
+            }
+        }
+
+        private Lazy<IList<Semester>> GetSemesters(int studyProgramId, string locale)
+        {
+            var sqlParams = new
+            {
+                studyProgramId = studyProgramId,
+                locale = locale
+            };
+
+            using (var connection = connectionFactory.CreateConnection())
+            {
+                var dbSemesters = connection.Query<int, Course, Semester>("SPGetSemesterCoursesByStudyProgram", param: sqlParams, commandType: CommandType.StoredProcedure,
+                    map: (semester, course) =>
+                {
+                    return new Semester
+                    {
+                        SemesterTerm = semester,
+                        Course = course
+                    };
+                }, splitOn: "Semester,CourseID");
+
+                return new Lazy<IList<Semester>>(() => dbSemesters.ToList());
             }
         }
 
@@ -101,8 +136,9 @@ namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
 
                 var result = await connection.QuerySingleOrDefaultAsync<StudyProgram>("SPGetStudyProgram", sqlParams, commandType: CommandType.StoredProcedure);
 
-                if( result != null)
+                if (result != null)
                 {
+                    result.SemesterCourses = GetSemesters(studyProgramId, locale);
                     return Builder.CreateSuccess(result);
                 }
 
@@ -128,7 +164,7 @@ namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
 
                 var rows = await connection.ExecuteAsync("SPUpdateOrAddStudyProgramTranslation", sqlParams, commandType: CommandType.StoredProcedure);
 
-                if(rows == 1)
+                if (rows == 1)
                 {
                     transactionScope.Complete();
                     return Builder.CreateSuccess();
