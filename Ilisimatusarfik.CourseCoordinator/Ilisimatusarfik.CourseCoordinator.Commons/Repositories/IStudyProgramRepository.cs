@@ -10,7 +10,7 @@
         Task<Result<StudyProgram>> CreateStudyProgram(StudyProgram studyProgram, string locale);
         Task<Result<StudyProgram>> GetStudyProgram(int studyProgramId, string locale);
         Task<Result<IList<StudyProgram>>> GetAllStudyPrograms(string locale);
-        Task<Result> AddCourseToProgram(int studProgramId, Course course);
+        Task<Result> AddCourseToProgram(int studyProgramId, Course course, int semester, string locale);
         Task<Result> UpdateOrTranslateStudyProgram(StudyProgram studyProgram, string locale);
         Task<Result> DeleteStudyProgram(int studyProgramId);
     }

@@ -23,9 +23,35 @@ namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
             this.connectionFactory = connectionFactory;
         }
 
-        public Task<Result> AddCourseToProgram(int studProgramId, Course course)
+        public async Task<Result> AddCourseToProgram(int studyProgramId, Course course, int semester, string locale)
         {
-            throw new NotImplementedException();
+            using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            using (var connection = connectionFactory.CreateConnection())
+            {
+                var sqlParams = new
+                {
+                    studyProgramId = studyProgramId,
+                    locale = locale,
+                    courseId = course.CourseID,
+                    startDate = course.StartDate,
+                    endDate = course.EndDate,
+                    name = course.Name,
+                    description = course.Description,
+                    ects = course.ECTS,
+                    semester = semester
+                };
+
+                var result = await connection.ExecuteAsync("SPAddOrUpdateCourseToStudyProgram", sqlParams, commandType: CommandType.StoredProcedure);
+                if(result > 0)
+                {
+                    transactionScope.Complete();
+                    return Builder.CreateSuccess();
+                }
+
+                const string message = "Could not add the new/existing course to the study program";
+                var error = new Error(HttpStatusCode.InternalServerError, message);
+                return Builder.CreateError(error);
+            }
         }
 
         public async Task<Result<StudyProgram>> CreateStudyProgram(StudyProgram studyProgram, string locale)
