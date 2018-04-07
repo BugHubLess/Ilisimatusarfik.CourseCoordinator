@@ -10,6 +10,7 @@ namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
     using Ilisimatusarfik.CourseCoordinator.Commons.Models.Places;
     using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
     using System.Collections.Generic;
+    using System.Data.SqlClient;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Transactions;
@@ -59,14 +60,14 @@ namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
             {
-                var sqlParams = new
-                {
-                    locale = locale,
-                    name = studyProgram.Name,
-                    description = studyProgram.Description
-                };
+                var param = new DynamicParameters();
+                param.Add("locale", locale, DbType.StringFixedLength, ParameterDirection.Input, 50);
+                param.Add("name", studyProgram.Name, DbType.String, ParameterDirection.Input);
+                param.Add("description", studyProgram.Description, DbType.String, ParameterDirection.Input);
+                param.Add("id", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-                var id = await connection.ExecuteScalarAsync<int>("SPAddStudyProgram", sqlParams, commandType: CommandType.StoredProcedure);
+                await connection.ExecuteAsync(sql: "SPAddStudyProgram", param: param, commandType: CommandType.StoredProcedure);
+                var id = param.Get<int>("id");
 
                 if (id > 0)
                 {
