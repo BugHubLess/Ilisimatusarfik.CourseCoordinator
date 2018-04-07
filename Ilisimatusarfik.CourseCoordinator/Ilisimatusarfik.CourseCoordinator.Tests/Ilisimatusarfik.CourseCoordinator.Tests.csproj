@@ -56,6 +56,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseIntegration\StudyProgramRepository\Create\CreateStudyProgramsTests.cs" />
     <Compile Include="Models\LectureTests\ScheduleConflictMethodTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,6 +64,10 @@
     <ProjectReference Include="..\Ilisimatusarfik.CourseCoordinator.Commons\Ilisimatusarfik.CourseCoordinator.Commons.csproj">
       <Project>{abcfd037-33da-4ff6-82f3-31dc2d05c9e0}</Project>
       <Name>Ilisimatusarfik.CourseCoordinator.Commons</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ilisimatusarfik.CourseCoordinator.DAL\Ilisimatusarfik.CourseCoordinator.DAL.csproj">
+      <Project>{24d92be8-e57b-4107-a1fd-c29a912ce635}</Project>
+      <Name>Ilisimatusarfik.CourseCoordinator.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
