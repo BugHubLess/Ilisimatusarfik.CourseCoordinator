@@ -12,6 +12,7 @@
     using System.Net;
     using System.Threading.Tasks;
     using System.Transactions;
+    using SP = Constants.Languages;
 
     public class LanguageRepository : ILanguageRepository
     {
@@ -27,16 +28,17 @@
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
             {
-                var sqlParams = new
+                var sqlParams = new DynamicParameters(new
                 {
                     locale = language.Locale,
                     displayName = language.DisplayName
-                };
-                var languageId = await connection.ExecuteScalarAsync<int>("SPAddLanguage", sqlParams, commandType: CommandType.StoredProcedure);
+                });
+                sqlParams.Add("id", DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-                language.LanguageID = languageId;
+                await connection.ExecuteScalarAsync<int>(SP.Create, sqlParams, commandType: CommandType.StoredProcedure);
 
-                if (languageId > 0)
+                language.LanguageID = sqlParams.Get<int>("id");
+                if (language.LanguageID > 0)
                 {
                     transactionScope.Complete();
                     return Builder.CreateSuccess(language);
@@ -58,7 +60,7 @@
                     languageId = languageId
                 };
 
-                var deleted = await connection.ExecuteAsync("SPDeleteLanguage", sqlParams, commandType: CommandType.StoredProcedure);
+                var deleted = await connection.ExecuteAsync(SP.Delete, sqlParams, commandType: CommandType.StoredProcedure);
 
                 if (deleted > 0)
                 {
@@ -79,7 +81,7 @@
                 {
                     locale = locale
                 };
-                var language = await connection.QueryFirstOrDefaultAsync<Language>("SPGetLanguage", sqlParams, commandType: CommandType.StoredProcedure);
+                var language = await connection.QueryFirstOrDefaultAsync<Language>(SP.Get, sqlParams, commandType: CommandType.StoredProcedure);
 
                 if (language != null)
                 {
@@ -98,7 +100,7 @@
                 IList<Language> result = null;
                 try
                 {
-                    var languages = await connection.QueryAsync<Language>("SPGetAllLanguages", commandType: CommandType.StoredProcedure);
+                    var languages = await connection.QueryAsync<Language>(SP.GetAll, commandType: CommandType.StoredProcedure);
                     result = languages.ToList();
                     return Builder.CreateSuccess(result);
                 }
@@ -115,13 +117,16 @@
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
             {
-                var sqlParams = new
+                var sqlParams = new DynamicParameters(new
                 {
                     languageId = language.LanguageID,
                     locale = language.Locale,
                     displayName = language.DisplayName
-                };
-                var updated = await connection.ExecuteAsync("SPEditLanguage", sqlParams, commandType: CommandType.StoredProcedure);
+                });
+                sqlParams.Add("rows", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+                await connection.ExecuteAsync(SP.Update, sqlParams, commandType: CommandType.StoredProcedure);
+                var updated = sqlParams.Get<int>("rows");
 
                 if (updated > 0)
                 {
