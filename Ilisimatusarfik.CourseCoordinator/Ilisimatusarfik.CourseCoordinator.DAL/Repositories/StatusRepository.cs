@@ -1,16 +1,17 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
 {
+    using Dapper;
     using Ilisimatusarfik.CourseCoordinator.Commons.Categories;
     using Ilisimatusarfik.CourseCoordinator.Commons.ErrorHandling;
     using Ilisimatusarfik.CourseCoordinator.Commons.Factories;
     using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
     using System.Collections.Generic;
+    using System.Data;
+    using System.Linq;
+    using System.Net;
     using System.Threading.Tasks;
     using System.Transactions;
-    using Dapper;
-    using System.Data;
-    using System.Net;
-    using System.Linq;
+    using SP = Constants.StatusTranslations;
 
     public class StatusRepository : IStatusRepository
     {
@@ -26,14 +27,17 @@
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
             {
-                var sqlParams = new
+                var sqlParams = new DynamicParameters(new
                 {
                     name = status.Name,
                     locale = locale
-                };
+                });
+                sqlParams.Add("id", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-                var id = await connection.ExecuteScalarAsync<int>("SPCreateStatusTranslation", sqlParams, commandType: CommandType.StoredProcedure);
-                if(id > 0)
+                await connection.ExecuteScalarAsync<int>(SP.Create, sqlParams, commandType: CommandType.StoredProcedure);
+                var id = sqlParams.Get<int>("id");
+
+                if (id > 0)
                 {
                     transactionScope.Complete();
                     status.StatusID = id;
@@ -50,12 +54,16 @@
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
             {
-                var sqlParams = new
+                var sqlParams = new DynamicParameters(new
                 {
                     statusId = statusId
-                };
-                var rows = await connection.ExecuteAsync("SPDeleteStatusTranslations", sqlParams, commandType: CommandType.StoredProcedure);
-                if(rows == 1)
+                });
+                sqlParams.Add("rows", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+
+                await connection.ExecuteAsync(SP.Delete, sqlParams, commandType: CommandType.StoredProcedure);
+                var rows = sqlParams.Get<int>("rows");
+
+                if (rows == 1)
                 {
                     transactionScope.Complete();
                     return Builder.CreateSuccess();
@@ -76,7 +84,7 @@
                     locale = locale
                 };
 
-                var query = await connection.QueryAsync<Status>("SPGetStatusTranslations", sqlParams, commandType: CommandType.StoredProcedure);
+                var query = await connection.QueryAsync<Status>(SP.GetMany, sqlParams, commandType: CommandType.StoredProcedure);
                 IList<Status> result = query.ToList();
 
                 return Builder.CreateSuccess(result);
@@ -93,7 +101,7 @@
                     locale = locale
                 };
 
-                var result = await connection.QueryFirstOrDefaultAsync<Status>("SPGetStatusTranslation", sqlParams, commandType: CommandType.StoredProcedure);
+                var result = await connection.QueryFirstOrDefaultAsync<Status>(SP.GetSingle, sqlParams, commandType: CommandType.StoredProcedure);
                 return Builder.CreateSuccess(result);
             }
         }
@@ -103,15 +111,18 @@
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
             {
-                var sqlParams = new
+                var sqlParams = new DynamicParameters(new
                 {
                     statusId = status.StatusID,
                     locale = locale,
                     name = status.Name
-                };
+                });
+                sqlParams.Add("rows", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
-                var rows = await connection.ExecuteAsync("SPUpdateOrAddStatusTranslation", sqlParams, commandType: CommandType.StoredProcedure);
-                if(rows == 1)
+                await connection.ExecuteAsync(SP.Update, sqlParams, commandType: CommandType.StoredProcedure);
+                var rows = sqlParams.Get<int>("rows");
+
+                if (rows == 1)
                 {
                     transactionScope.Complete();
                     return Builder.CreateSuccess();
