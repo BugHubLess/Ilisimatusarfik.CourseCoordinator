@@ -12,7 +12,7 @@
     using System.Net;
     using System.Threading.Tasks;
     using System.Transactions;
-    using SP = Constants.Languages;
+    using SP = StoredProcedures.Languages;
 
     public class LanguageRepository : ILanguageRepository
     {

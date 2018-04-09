@@ -12,7 +12,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using System.Transactions;
-    using SP = Constants.StudyPrograms;
+    using SP = StoredProcedures.StudyPrograms;
 
     public class StudyProgramRepository : IStudyProgramRepository
     {

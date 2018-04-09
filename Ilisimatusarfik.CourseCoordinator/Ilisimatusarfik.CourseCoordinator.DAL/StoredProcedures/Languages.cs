@@ -1,4 +1,4 @@
-﻿namespace Ilisimatusarfik.CourseCoordinator.DAL.Constants
+﻿namespace Ilisimatusarfik.CourseCoordinator.DAL.StoredProcedures
 {
     public static class Languages
     {

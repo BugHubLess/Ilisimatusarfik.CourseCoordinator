@@ -11,7 +11,7 @@
     using System.Net;
     using System.Threading.Tasks;
     using System.Transactions;
-    using SP = Constants.StatusTranslations;
+    using SP = StoredProcedures.StatusTranslations;
 
     public class StatusRepository : IStatusRepository
     {
