@@ -27,6 +27,7 @@
 
             // Controllers
             builder.RegisterType<LanguageController>();
+            builder.RegisterType<StudyProgramController>();
 
             // Repositories
             builder.RegisterType<LanguageRepository>().As<ILanguageRepository>();
