@@ -57,7 +57,7 @@
             }
         }
 
-        public async Task<Result<StudyProgram>> CreateStudyProgram(StudyProgram studyProgram, string locale)
+        public async Task<Result<StudyProgramInternal>> CreateStudyProgram(StudyProgramInternal studyProgram, string locale)
         {
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
@@ -112,7 +112,7 @@
             }
         }
 
-        public async Task<Result<IList<StudyProgram>>> GetAllStudyPrograms(string locale)
+        public async Task<Result<IList<StudyProgramInternal>>> GetAllStudyPrograms(string locale)
         {
             using (var connection = connectionFactory.CreateConnection())
             {
@@ -121,14 +121,14 @@
                     locale = locale
                 });
 
-                var query = await connection.QueryAsync<StudyProgram>(SP.GetMany, sqlParams, commandType: CommandType.StoredProcedure);
+                var query = await connection.QueryAsync<StudyProgramInternal>(SP.GetMany, sqlParams, commandType: CommandType.StoredProcedure);
 
                 foreach (var studyProgram in query)
                 {
                     studyProgram.SemesterCourses = GetSemesters(studyProgram.StudyProgramID, locale);
                 }
 
-                IList<StudyProgram> result = query.ToList();
+                IList<StudyProgramInternal> result = query.ToList();
                 return Builder.CreateSuccess(result);
             }
         }
@@ -157,7 +157,7 @@
             }
         }
 
-        public async Task<Result<StudyProgram>> GetStudyProgram(int studyProgramId, string locale)
+        public async Task<Result<StudyProgramInternal>> GetStudyProgram(int studyProgramId, string locale)
         {
             using (var connection = connectionFactory.CreateConnection())
             {
@@ -167,7 +167,7 @@
                     locale = locale
                 });
 
-                var result = await connection.QuerySingleOrDefaultAsync<StudyProgram>(SP.GetSingle, sqlParams, commandType: CommandType.StoredProcedure);
+                var result = await connection.QuerySingleOrDefaultAsync<StudyProgramInternal>(SP.GetSingle, sqlParams, commandType: CommandType.StoredProcedure);
 
                 if (result != null)
                 {
@@ -182,7 +182,7 @@
             }
         }
 
-        public async Task<Result> UpdateOrTranslateStudyProgram(StudyProgram studyProgram, string locale)
+        public async Task<Result> UpdateOrTranslateStudyProgram(StudyProgramInternal studyProgram, string locale)
         {
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
