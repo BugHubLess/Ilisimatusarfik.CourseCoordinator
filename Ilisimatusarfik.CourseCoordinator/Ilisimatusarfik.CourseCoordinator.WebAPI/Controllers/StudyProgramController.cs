@@ -30,7 +30,7 @@
                     var study = Convert(s, courses);
                     return Ok(study);
                 },
-                error => ResponseMessage(error)
+                error => Content(error.Status, error.Message)
             );
         }
 
@@ -57,7 +57,7 @@
                     var location = Url.Route(routeName: Routes.DefaultRouteName, routeValues: parameters);
                     return Created(location, c);
                 },
-                error => ResponseMessage(error)
+                error => Content(error.Status, error.Message)
             );
         }
     }
