@@ -53,7 +53,8 @@
             return created.Match<IHttpActionResult>(
                 c =>
                 {
-                    var parameters = new { controller = nameof(StudyProgramController), id = c.StudyProgramID, locale = locale };
+                    var name = ControllerContext.ControllerDescriptor.ControllerName;
+                    var parameters = new { controller = name, id = c.StudyProgramID, locale = locale };
                     var location = Url.Route(routeName: Routes.DefaultRouteName, routeValues: parameters);
                     return Created(location, Convert(c, false));
                 },
