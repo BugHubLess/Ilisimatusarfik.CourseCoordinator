@@ -55,7 +55,7 @@
                 {
                     var parameters = new { controller = nameof(StudyProgramController), id = c.StudyProgramID, locale = locale };
                     var location = Url.Route(routeName: Routes.DefaultRouteName, routeValues: parameters);
-                    return Created(location, c);
+                    return Created(location, Convert(c, false));
                 },
                 error => Content(error.Status, error.Message)
             );
