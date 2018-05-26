@@ -1,17 +1,14 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.Tests.Controllers
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-    using Xunit;
-    using Ilisimatusarfik.CourseCoordinator.WebAPI.Controllers;
-    using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
-    using Moq;
-    using Ilisimatusarfik.CourseCoordinator.Commons.Models.Places;
     using Ilisimatusarfik.CourseCoordinator.Commons.ErrorHandling;
+    using Ilisimatusarfik.CourseCoordinator.Commons.Models.Places;
+    using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
+    using Ilisimatusarfik.CourseCoordinator.WebAPI.Controllers;
+    using Moq;
+    using System;
+    using System.Threading.Tasks;
     using System.Web.Http.Results;
+    using Xunit;
 
     public class StudyProgramControllerTests
     {
@@ -25,7 +22,7 @@
                 study.StudyProgramID = 1;
                 return Task.FromResult<Result<StudyProgramInternal>>(Builder.CreateSuccess(study));
             });
-            var repo = mock.Object; 
+            var repo = mock.Object;
             var controller = new StudyProgramController(repo);
             var program = new StudyProgram();
 
@@ -35,7 +32,6 @@
 
             // Assert
             Console.WriteLine(content.Content);
-
         }
     }
 }

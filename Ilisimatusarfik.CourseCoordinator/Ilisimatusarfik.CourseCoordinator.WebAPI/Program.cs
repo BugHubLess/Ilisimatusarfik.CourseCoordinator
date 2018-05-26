@@ -4,9 +4,9 @@
     using System;
     using System.Net.Http;
 
-    class Program
+    internal class Program
     {
-        static void Main()
+        private static void Main()
         {
             string baseAddress = "http://localhost:9000/";
 

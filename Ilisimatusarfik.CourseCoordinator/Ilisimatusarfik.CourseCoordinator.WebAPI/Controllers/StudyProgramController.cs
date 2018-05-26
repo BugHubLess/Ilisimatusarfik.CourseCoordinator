@@ -28,19 +28,6 @@
             );
         }
 
-        private StudyProgram Convert(StudyProgramInternal input, bool courses)
-        {
-            var result = new StudyProgram
-            {
-                Description = input.Description,
-                Name = input.Name,
-                StudyProgramID = input.StudyProgramID
-            };
-
-            result.SemesterCourses = courses ? input.SemesterCourses.Value : null;
-            return result;
-        }
-
         public async Task<IHttpActionResult> Post([FromUri] string locale, [FromBody] StudyProgram studyProgram)
         {
             var created = await studyProgramRepository.CreateStudyProgram(studyProgram, locale);
@@ -54,6 +41,19 @@
                 },
                 error => Content(error.Status, error.Message)
             );
+        }
+
+        private StudyProgram Convert(StudyProgramInternal input, bool courses)
+        {
+            var result = new StudyProgram
+            {
+                Description = input.Description,
+                Name = input.Name,
+                StudyProgramID = input.StudyProgramID
+            };
+
+            result.SemesterCourses = courses ? input.SemesterCourses.Value : null;
+            return result;
         }
     }
 }

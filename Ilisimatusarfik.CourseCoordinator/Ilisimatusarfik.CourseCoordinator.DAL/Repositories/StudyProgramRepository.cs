@@ -1,15 +1,15 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.DAL.Repositories
 {
-    using System;
-    using System.Data;
-    using System.Net;
     using Dapper;
     using Ilisimatusarfik.CourseCoordinator.Commons.ErrorHandling;
     using Ilisimatusarfik.CourseCoordinator.Commons.Factories;
     using Ilisimatusarfik.CourseCoordinator.Commons.Models.Places;
     using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
+    using System;
     using System.Collections.Generic;
+    using System.Data;
     using System.Linq;
+    using System.Net;
     using System.Threading.Tasks;
     using System.Transactions;
     using SP = StoredProcedures.StudyPrograms;
