@@ -57,6 +57,7 @@
     <Compile Include="Models\Materials\Resource.cs" />
     <Compile Include="Models\Materials\Syllabus.cs" />
     <Compile Include="Models\Places\StudyProgram.cs" />
+    <Compile Include="Models\Places\StudyProgramInternal.cs" />
     <Compile Include="Models\Places\Semester.cs" />
     <Compile Include="Models\Users\CourseManager.cs" />
     <Compile Include="Models\Users\Employee.cs" />

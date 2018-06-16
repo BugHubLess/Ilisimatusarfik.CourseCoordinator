@@ -6,17 +6,17 @@
     {
         public Error(HttpStatusCode status, string message)
         {
-            Status = (int)status;
+            Status = status;
             Message = message;
         }
 
         public Error(int status, string message)
         {
-            Status = status;
+            Status = (HttpStatusCode)status;
             Message = message;
         }
 
-        public int Status { get; private set; }
-        public string Message { get; private set; }
+        public HttpStatusCode Status { get; }
+        public string Message { get; }
     }
 }

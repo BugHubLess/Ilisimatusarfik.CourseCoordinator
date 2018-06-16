@@ -18,7 +18,7 @@
         {
             // Arrange
             IStudyProgramRepository repo = new T(new ConnectionFactory(connectionString));
-            var studyProgram = new StudyProgram
+            var studyProgram = new StudyProgramInternal
             {
                 Name = name,
                 Description = description

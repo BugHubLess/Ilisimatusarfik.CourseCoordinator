@@ -4,9 +4,9 @@
     using System;
     using System.Net.Http;
 
-    class Program
+    internal class Program
     {
-        static void Main()
+        private static void Main()
         {
             string baseAddress = "http://localhost:9000/";
 
@@ -16,7 +16,7 @@
                 // Create HttpCient and make a request to api/values
                 HttpClient client = new HttpClient();
 
-                var response = client.GetAsync(baseAddress + "api/language?locale=kl-GL").Result;
+                var response = client.GetAsync(baseAddress + "api/studyprogram?id=1&locale=kl-GL").Result;
 
                 Console.WriteLine(response);
                 Console.WriteLine(response.Content.ReadAsStringAsync().Result);
