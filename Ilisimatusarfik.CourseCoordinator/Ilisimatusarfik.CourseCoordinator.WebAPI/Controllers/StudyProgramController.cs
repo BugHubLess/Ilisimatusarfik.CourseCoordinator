@@ -43,6 +43,7 @@
             );
         }
 
+        [NonAction]
         private StudyProgram Convert(StudyProgramInternal input, bool courses)
         {
             var result = new StudyProgram
