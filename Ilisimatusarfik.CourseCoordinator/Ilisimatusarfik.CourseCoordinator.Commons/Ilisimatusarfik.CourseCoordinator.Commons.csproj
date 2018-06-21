@@ -46,6 +46,7 @@
     <Compile Include="ErrorHandling\Error.cs" />
     <Compile Include="ErrorHandling\Result.cs" />
     <Compile Include="Factories\IConnectionFactory.cs" />
+    <Compile Include="Models\Collections\Page.cs" />
     <Compile Include="Models\Materials\Assignment.cs" />
     <Compile Include="Models\Materials\Book.cs" />
     <Compile Include="Models\Materials\FileResource.cs" />

@@ -126,6 +126,11 @@
     <Build Include="StoredProcedures\Courses\SPGetCoursesByStudyProgram.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPGetSemesterCoursesByStudyProgram.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPAddOrUpdateCourseToStudyProgram.sql" />
+    <Build Include="StoredProcedures\Courses\SPAddCourse.sql" />
+    <Build Include="StoredProcedures\Courses\SPAssignCourseToStudyProgramSemester.sql" />
+    <Build Include="StoredProcedures\Courses\SPEditCourse.sql" />
+    <Build Include="StoredProcedures\Courses\SPDeleteCourse.sql" />
+    <Build Include="StoredProcedures\Courses\SPGetPageCourses.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />
