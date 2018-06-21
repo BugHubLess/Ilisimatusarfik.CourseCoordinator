@@ -1,6 +1,19 @@
-﻿CREATE PROCEDURE [dbo].[SPDeleteCourse]
-	@param1 int = 0,
-	@param2 int
+﻿/*
+	Delete a course
+*/
+CREATE PROCEDURE [dbo].[SPDeleteCourse]
+	@courseId INT
 AS
-	SELECT @param1, @param2
-RETURN 0
+BEGIN TRANSACTION
+BEGIN TRY
+	DECLARE @ROWS INT;
+	DELETE FROM Courses
+	WHERE CourseID = @courseId
+	SET @ROWS = @@ROWCOUNT;
+COMMIT TRANSACTION
+END TRY
+
+BEGIN CATCH
+	ROLLBACK TRANSACTION
+END CATCH
+RETURN @ROWS
