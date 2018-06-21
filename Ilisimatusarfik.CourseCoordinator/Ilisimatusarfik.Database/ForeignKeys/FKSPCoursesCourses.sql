@@ -2,3 +2,4 @@
 	ADD CONSTRAINT [fk_studyprogramcourses_courses]
 	FOREIGN KEY (CourseID)
 	REFERENCES [Courses] (CourseID)
+	ON DELETE CASCADE
