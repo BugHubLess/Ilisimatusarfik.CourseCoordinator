@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilisimatusarfik.CourseCoord
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilisimatusarfik.CourseCoordinator.WebAPI", "Ilisimatusarfik.CourseCoordinator.WebAPI\Ilisimatusarfik.CourseCoordinator.WebAPI.csproj", "{3EB99DC0-B30D-4B9A-AFAE-9586905B219B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ilisimatusarfik.CourseCoordinator.Tests.DB", "Ilisimatusarfik.CourseCoordinator.Tests.DB\Ilisimatusarfik.CourseCoordinator.Tests.DB.csproj", "{066D3005-A2CF-4775-AEE9-9BF2E8AED032}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{3EB99DC0-B30D-4B9A-AFAE-9586905B219B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EB99DC0-B30D-4B9A-AFAE-9586905B219B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EB99DC0-B30D-4B9A-AFAE-9586905B219B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{066D3005-A2CF-4775-AEE9-9BF2E8AED032}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{066D3005-A2CF-4775-AEE9-9BF2E8AED032}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{066D3005-A2CF-4775-AEE9-9BF2E8AED032}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{066D3005-A2CF-4775-AEE9-9BF2E8AED032}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
