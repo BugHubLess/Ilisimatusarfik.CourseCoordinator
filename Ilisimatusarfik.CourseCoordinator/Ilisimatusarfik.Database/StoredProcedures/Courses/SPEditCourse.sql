@@ -2,6 +2,7 @@
 Edit/update a course
 */
 CREATE PROCEDURE [dbo].[SPEditCourse]
+	@courseId INT,
 	@locale NVARCHAR(50),
 	@startDate DateTimeOffset(7),
 	@endDate DateTimeOffset(7),
@@ -11,26 +12,28 @@ CREATE PROCEDURE [dbo].[SPEditCourse]
 AS
 BEGIN TRANSACTION
 BEGIN TRY
-	UPDATE C
+	DECLARE @ROWS INT;
+	UPDATE Courses
 
-	SET C.StartDate = @startDate,
-	C.EndDate = @endDate,
-	C.ECTS = @ECTS,
-	C.Name = @name,
-	C.Description = @description
+	SET StartDate = @startDate,
+	EndDate = @endDate,
+	ECTS = @ECTS
 
-	FROM (
-		SELECT * FROM
-		Courses CS
-		INNER JOIN CourseTranslations CT
-		ON
-		CS.CourseID = CT.CourseID
-		RIGHT JOIN Languages L
-		ON
-		CT.LanguageID = L.LanguageID
-	) AS C
-	
-	WHERE C.Locale = @locale
+	WHERE CourseID = @courseId;
+
+	UPDATE CT
+
+	SET CT.Name = @name,
+	CT.Description = @description,
+	CT.LanguageID = L.LanguageID
+
+	FROM CourseTranslations CT
+	INNER JOIN Languages L
+	ON CT.LanguageID = L.LanguageID
+
+	WHERE CT.CourseID = @courseId
+
+	SET @ROWS = @@ROWCOUNT;
 
 COMMIT TRANSACTION
 END TRY
@@ -38,4 +41,4 @@ END TRY
 BEGIN CATCH
 	ROLLBACK TRANSACTION
 END CATCH
-RETURN @@ROWCOUNT
+RETURN @ROWS
