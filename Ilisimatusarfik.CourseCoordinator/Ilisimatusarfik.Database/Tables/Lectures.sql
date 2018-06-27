@@ -4,6 +4,5 @@
     [CourseID] INT NOT NULL, 
     [StatusID] INT NOT NULL, 
     [Start] DATETIMEOFFSET NOT NULL, 
-    [Duration] INT NOT NULL, 
-    [ClassroomID] INT NULL
+    [Duration] INT NOT NULL 
 )
