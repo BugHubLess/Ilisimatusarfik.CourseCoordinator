@@ -2,4 +2,4 @@
 	ADD CONSTRAINT [fk_reservedClassrooms_approvedBy]
 	FOREIGN KEY (ApprovedBy)
 	REFERENCES [Employees] (EmployeeID)
-	ON DELETE SET NULL
+	ON DELETE NO ACTION
