@@ -98,7 +98,7 @@
     <Build Include="ForeignKeys\FKLecturesCourses.sql" />
     <Build Include="ForeignKeys\FKStatusStatusTranslations.sql" />
     <Build Include="Tables\Classrooms.sql" />
-    <Build Include="ForeignKeys\FKReservedClassroomsLectures.sql" />
+    <Build Include="ForeignKeys\FKRequestedClassroomsLectures.sql" />
     <Build Include="Tables\Employees.sql" />
     <Build Include="Tables\Lectors.sql" />
     <Build Include="ForeignKeys\FKLectorsLectures.sql" />
@@ -131,10 +131,9 @@
     <Build Include="StoredProcedures\Courses\SPEditCourse.sql" />
     <Build Include="StoredProcedures\Courses\SPDeleteCourse.sql" />
     <Build Include="StoredProcedures\Courses\SPGetPageCourses.sql" />
-    <Build Include="Tables\ReservedClassrooms.sql" />
-    <Build Include="ForeignKeys\FKReservedClassroomsClassrooms.sql" />
-    <Build Include="ForeignKeys\FKReservedClassroomsReservedBy.sql" />
-    <Build Include="ForeignKeys\FKReservedClassroomsApprovedBy.sql" />
+    <Build Include="Tables\RequestedClassrooms.sql" />
+    <Build Include="ForeignKeys\FKRequestedClassroomsClassrooms.sql" />
+    <Build Include="ForeignKeys\FKRequestedClassroomsRequestedBy.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />
