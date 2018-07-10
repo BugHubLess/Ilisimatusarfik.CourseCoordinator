@@ -1,4 +1,0 @@
-﻿CREATE TABLE [dbo].[Status]
-(
-	[StatusID] INT NOT NULL PRIMARY KEY IDENTITY
-)

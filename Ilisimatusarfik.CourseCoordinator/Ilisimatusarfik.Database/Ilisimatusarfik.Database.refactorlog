@@ -147,4 +147,25 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="RequestedBookingDate" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="a0b53928-b83c-4aa2-95eb-a29752363c04" ChangeDateTime="07/10/2018 02:23:45">
+    <Property Name="ElementName" Value="[dbo].[Status].[StatusID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Status]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LectureStatusID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="0bf837fa-88e6-4df7-ba51-6ed07d8252d7" ChangeDateTime="07/10/2018 02:26:01">
+    <Property Name="ElementName" Value="[dbo].[LectureStatusTranslations].[StatusID]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LectureStatusTranslations]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LectureStatusID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6443e157-c6f8-4dd8-b3e1-1ab4e31e4645" ChangeDateTime="07/10/2018 02:26:14">
+    <Property Name="ElementName" Value="[dbo].[LectureStatusTranslations].[Name]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LectureStatusTranslations]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="LectureStatus" />
+  </Operation>
 </Operations>

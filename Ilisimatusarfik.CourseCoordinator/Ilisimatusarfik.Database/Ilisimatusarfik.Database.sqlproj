@@ -92,11 +92,11 @@
     <Build Include="ForeignKeys\FKSRRStudents.sql" />
     <Build Include="ForeignKeys\FKSRRLectures.sql" />
     <Build Include="Tables\Lectures.sql" />
-    <Build Include="Tables\Status.sql" />
-    <Build Include="Tables\StatusTranslations.sql" />
+    <Build Include="Tables\LectureStatus.sql" />
+    <Build Include="Tables\LectureStatusTranslations.sql" />
     <Build Include="ForeignKeys\FKLecturesStatus.sql" />
     <Build Include="ForeignKeys\FKLecturesCourses.sql" />
-    <Build Include="ForeignKeys\FKStatusStatusTranslations.sql" />
+    <Build Include="ForeignKeys\FKLectureStatusStatusTranslations.sql" />
     <Build Include="Tables\Classrooms.sql" />
     <Build Include="ForeignKeys\FKRequestedClassroomsLectures.sql" />
     <Build Include="Tables\Employees.sql" />
@@ -114,7 +114,7 @@
     <Build Include="Indices\LecturesIndexStart.sql" />
     <Build Include="StoredProcedures\Languages\SPGetLanguage.sql" />
     <Build Include="StoredProcedures\Languages\SPGetAllLanguages.sql" />
-    <Build Include="ForeignKeys\FKStatusTranslationLanguages.sql" />
+    <Build Include="ForeignKeys\FKLectureStatusTranslationLanguages.sql" />
     <Build Include="StoredProcedures\StatusTranslations\SPCreateStatusTranslation.sql" />
     <Build Include="StoredProcedures\StatusTranslations\SPUpdateOrAddStatusTranslation.sql" />
     <Build Include="StoredProcedures\StatusTranslations\SPGetStatusTranslation.sql" />
