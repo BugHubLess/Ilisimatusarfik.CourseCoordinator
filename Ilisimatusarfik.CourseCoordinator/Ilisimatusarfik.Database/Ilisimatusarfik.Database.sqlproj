@@ -138,6 +138,10 @@
     <Build Include="ForeignKeys\FKBookedClassroomsRequestedClassrooms.sql" />
     <Build Include="ForeignKeys\FKBookedClassroomsEmployees.sql" />
     <Build Include="Tables\RoomStatus.sql" />
+    <Build Include="Tables\RoomStatusTranslations.sql" />
+    <Build Include="ForeignKeys\FKRoomStatusTranslationRoomStatus.sql" />
+    <Build Include="ForeignKeys\FKRoomStatusTranslationsLanguages.sql" />
+    <Build Include="ForeignKeys\FKRequestedClassroomsRoomStatus.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />

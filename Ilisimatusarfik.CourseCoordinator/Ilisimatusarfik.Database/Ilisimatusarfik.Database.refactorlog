@@ -182,4 +182,11 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="RoomStatusID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="5cd40194-ded6-414e-90bd-c5f6ee38cfb5" ChangeDateTime="07/10/2018 03:49:57">
+    <Property Name="ElementName" Value="[dbo].[RoomStatusTranslations].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RoomStatusTranslations]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RoomStatusID" />
+  </Operation>
 </Operations>
