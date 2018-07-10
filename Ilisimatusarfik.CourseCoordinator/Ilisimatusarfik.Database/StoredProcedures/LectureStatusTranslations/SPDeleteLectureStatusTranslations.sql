@@ -1,11 +1,11 @@
-﻿CREATE PROCEDURE [dbo].[SPDeleteStatusTranslations]
-	@statusId int
+﻿CREATE PROCEDURE [dbo].[SPDeleteLectureStatusTranslations]
+	@lectureStatusId int
 AS
 BEGIN TRANSACTION
 BEGIN TRY
 	DECLARE @ROWS INT;
-	DELETE FROM Status
-	WHERE StatusID = @statusId
+	DELETE FROM LectureStatus
+	WHERE LectureStatusID = @lectureStatusId
 	SET @ROWS = @@ROWCOUNT;
 COMMIT TRANSACTION
 END TRY

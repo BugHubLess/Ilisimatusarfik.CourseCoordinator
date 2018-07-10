@@ -65,7 +65,7 @@
     <Folder Include="StoredProcedures" />
     <Folder Include="StoredProcedures\Languages" />
     <Folder Include="StoredProcedures\StudyPrograms" />
-    <Folder Include="StoredProcedures\StatusTranslations" />
+    <Folder Include="StoredProcedures\LectureStatusTranslations" />
     <Folder Include="StoredProcedures\Courses" />
   </ItemGroup>
   <ItemGroup>
@@ -115,11 +115,11 @@
     <Build Include="StoredProcedures\Languages\SPGetLanguage.sql" />
     <Build Include="StoredProcedures\Languages\SPGetAllLanguages.sql" />
     <Build Include="ForeignKeys\FKLectureStatusTranslationLanguages.sql" />
-    <Build Include="StoredProcedures\StatusTranslations\SPCreateStatusTranslation.sql" />
-    <Build Include="StoredProcedures\StatusTranslations\SPUpdateOrAddStatusTranslation.sql" />
-    <Build Include="StoredProcedures\StatusTranslations\SPGetStatusTranslation.sql" />
-    <Build Include="StoredProcedures\StatusTranslations\SPGetStatusTranslations.sql" />
-    <Build Include="StoredProcedures\StatusTranslations\SPDeleteStatusTranslations.sql" />
+    <Build Include="StoredProcedures\LectureStatusTranslations\SPCreateLectureStatusTranslation.sql" />
+    <Build Include="StoredProcedures\LectureStatusTranslations\SPUpdateOrAddLectureStatusTranslation.sql" />
+    <Build Include="StoredProcedures\LectureStatusTranslations\SPGetLectureStatusTranslation.sql" />
+    <Build Include="StoredProcedures\LectureStatusTranslations\SPGetLectureStatusTranslations.sql" />
+    <Build Include="StoredProcedures\LectureStatusTranslations\SPDeleteLectureStatusTranslations.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPGetStudyProgram.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPGetStudyPrograms.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPUpdateOrAddStudyProgramTranslation.sql" />
@@ -134,6 +134,9 @@
     <Build Include="Tables\RequestedClassrooms.sql" />
     <Build Include="ForeignKeys\FKRequestedClassroomsClassrooms.sql" />
     <Build Include="ForeignKeys\FKRequestedClassroomsRequestedBy.sql" />
+    <Build Include="Tables\BookedClassrooms.sql" />
+    <Build Include="ForeignKeys\FKBookedClassroomsRequestedClassrooms.sql" />
+    <Build Include="ForeignKeys\FKBookedClassroomsEmployees.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />

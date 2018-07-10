@@ -1,13 +1,13 @@
-﻿CREATE PROCEDURE [dbo].[SPCreateStatusTranslation]
+﻿CREATE PROCEDURE [dbo].[SPCreateLectureStatusTranslation]
 	@locale NVARCHAR(50),
 	@name NVARCHAR(MAX)
 AS
 BEGIN TRANSACTION
 BEGIN TRY
 	DECLARE @ID INT;
-	INSERT Status DEFAULT VALUES -- This will set SCOPE_IDENTITY
+	INSERT LectureStatus DEFAULT VALUES -- This will set SCOPE_IDENTITY
 	SET @ID = SCOPE_IDENTITY();
-	INSERT INTO StatusTranslations (StatusID, LanguageID, Name)
+	INSERT INTO LectureStatusTranslations (LectureStatusID, LanguageID, LectureStatus)
 	SELECT @ID, LanguageID, @name FROM Languages WHERE Locale = @locale
 COMMIT TRANSACTION
 END TRY
