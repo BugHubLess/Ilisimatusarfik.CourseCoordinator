@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Actions\Enroll.cs" />
+    <Compile Include="Actions\RequestClassroom.cs" />
     <Compile Include="Actions\RollCall.cs" />
     <Compile Include="Categories\Language.cs" />
     <Compile Include="ErrorHandling\Error.cs" />
