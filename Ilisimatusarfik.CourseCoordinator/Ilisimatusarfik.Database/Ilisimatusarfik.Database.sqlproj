@@ -137,6 +137,7 @@
     <Build Include="Tables\BookedClassrooms.sql" />
     <Build Include="ForeignKeys\FKBookedClassroomsRequestedClassrooms.sql" />
     <Build Include="ForeignKeys\FKBookedClassroomsEmployees.sql" />
+    <Build Include="Tables\RoomStatus.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />
