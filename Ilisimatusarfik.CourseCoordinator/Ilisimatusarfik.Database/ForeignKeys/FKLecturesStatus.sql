@@ -1,4 +1,4 @@
 ﻿ALTER TABLE [dbo].[Lectures]
-	ADD CONSTRAINT [fk_lectures_status]
+	ADD CONSTRAINT [fk_lectures_lectureStatus]
 	FOREIGN KEY (StatusID)
-	REFERENCES [Status] (StatusID)
+	REFERENCES [LectureStatus] ([LectureStatusID])

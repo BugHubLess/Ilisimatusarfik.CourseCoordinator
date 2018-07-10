@@ -65,7 +65,7 @@
     <Folder Include="StoredProcedures" />
     <Folder Include="StoredProcedures\Languages" />
     <Folder Include="StoredProcedures\StudyPrograms" />
-    <Folder Include="StoredProcedures\StatusTranslations" />
+    <Folder Include="StoredProcedures\LectureStatusTranslations" />
     <Folder Include="StoredProcedures\Courses" />
   </ItemGroup>
   <ItemGroup>
@@ -92,13 +92,13 @@
     <Build Include="ForeignKeys\FKSRRStudents.sql" />
     <Build Include="ForeignKeys\FKSRRLectures.sql" />
     <Build Include="Tables\Lectures.sql" />
-    <Build Include="Tables\Status.sql" />
-    <Build Include="Tables\StatusTranslations.sql" />
+    <Build Include="Tables\LectureStatus.sql" />
+    <Build Include="Tables\LectureStatusTranslations.sql" />
     <Build Include="ForeignKeys\FKLecturesStatus.sql" />
     <Build Include="ForeignKeys\FKLecturesCourses.sql" />
-    <Build Include="ForeignKeys\FKStatusStatusTranslations.sql" />
+    <Build Include="ForeignKeys\FKLectureStatusStatusTranslations.sql" />
     <Build Include="Tables\Classrooms.sql" />
-    <Build Include="ForeignKeys\FKReservedClassroomsLectures.sql" />
+    <Build Include="ForeignKeys\FKRequestedClassroomsLectures.sql" />
     <Build Include="Tables\Employees.sql" />
     <Build Include="Tables\Lectors.sql" />
     <Build Include="ForeignKeys\FKLectorsLectures.sql" />
@@ -114,12 +114,12 @@
     <Build Include="Indices\LecturesIndexStart.sql" />
     <Build Include="StoredProcedures\Languages\SPGetLanguage.sql" />
     <Build Include="StoredProcedures\Languages\SPGetAllLanguages.sql" />
-    <Build Include="ForeignKeys\FKStatusTranslationLanguages.sql" />
-    <Build Include="StoredProcedures\StatusTranslations\SPCreateStatusTranslation.sql" />
-    <Build Include="StoredProcedures\StatusTranslations\SPUpdateOrAddStatusTranslation.sql" />
-    <Build Include="StoredProcedures\StatusTranslations\SPGetStatusTranslation.sql" />
-    <Build Include="StoredProcedures\StatusTranslations\SPGetStatusTranslations.sql" />
-    <Build Include="StoredProcedures\StatusTranslations\SPDeleteStatusTranslations.sql" />
+    <Build Include="ForeignKeys\FKLectureStatusTranslationLanguages.sql" />
+    <Build Include="StoredProcedures\LectureStatusTranslations\SPCreateLectureStatusTranslation.sql" />
+    <Build Include="StoredProcedures\LectureStatusTranslations\SPUpdateOrAddLectureStatusTranslation.sql" />
+    <Build Include="StoredProcedures\LectureStatusTranslations\SPGetLectureStatusTranslation.sql" />
+    <Build Include="StoredProcedures\LectureStatusTranslations\SPGetLectureStatusTranslations.sql" />
+    <Build Include="StoredProcedures\LectureStatusTranslations\SPDeleteLectureStatusTranslations.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPGetStudyProgram.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPGetStudyPrograms.sql" />
     <Build Include="StoredProcedures\StudyPrograms\SPUpdateOrAddStudyProgramTranslation.sql" />
@@ -131,10 +131,19 @@
     <Build Include="StoredProcedures\Courses\SPEditCourse.sql" />
     <Build Include="StoredProcedures\Courses\SPDeleteCourse.sql" />
     <Build Include="StoredProcedures\Courses\SPGetPageCourses.sql" />
-    <Build Include="Tables\ReservedClassrooms.sql" />
-    <Build Include="ForeignKeys\FKReservedClassroomsClassrooms.sql" />
-    <Build Include="ForeignKeys\FKReservedClassroomsReservedBy.sql" />
-    <Build Include="ForeignKeys\FKReservedClassroomsApprovedBy.sql" />
+    <Build Include="Tables\RequestedClassrooms.sql" />
+    <Build Include="ForeignKeys\FKRequestedClassroomsClassrooms.sql" />
+    <Build Include="ForeignKeys\FKRequestedClassroomsRequestedBy.sql" />
+    <Build Include="Tables\BookedClassrooms.sql" />
+    <Build Include="ForeignKeys\FKBookedClassroomsRequestedClassrooms.sql" />
+    <Build Include="ForeignKeys\FKBookedClassroomsEmployees.sql" />
+    <Build Include="Tables\RoomStatus.sql" />
+    <Build Include="Tables\RoomStatusTranslations.sql" />
+    <Build Include="ForeignKeys\FKRoomStatusTranslationRoomStatus.sql" />
+    <Build Include="ForeignKeys\FKRoomStatusTranslationsLanguages.sql" />
+    <Build Include="ForeignKeys\FKRequestedClassroomsRoomStatus.sql" />
+    <Build Include="Indices\RequestedClassroomsIndexRequestBookingDate.sql" />
+    <Build Include="Indices\BookedClassroomsIndexBookingDate.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="Ilisimatusarfik.Database.refactorlog" />

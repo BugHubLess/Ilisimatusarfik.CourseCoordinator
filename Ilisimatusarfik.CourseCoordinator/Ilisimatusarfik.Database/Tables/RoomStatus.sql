@@ -1,0 +1,4 @@
+﻿CREATE TABLE [dbo].[RoomStatus]
+(
+	[RoomStatusID] INT NOT NULL PRIMARY KEY IDENTITY
+)
