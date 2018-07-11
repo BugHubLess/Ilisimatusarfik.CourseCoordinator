@@ -189,4 +189,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="RoomStatusID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="d753df24-0555-47fb-8ceb-7bfef1c3f245" ChangeDateTime="07/11/2018 00:20:47">
+    <Property Name="ElementName" Value="[dbo].[RoomStatusTranslations].[RoomStatus]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[RoomStatusTranslations]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Status" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="82a473b4-491b-4752-9b4a-220c716932b6" ChangeDateTime="07/11/2018 00:21:06">
+    <Property Name="ElementName" Value="[dbo].[LectureStatusTranslations].[LectureStatus]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[LectureStatusTranslations]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Status" />
+  </Operation>
 </Operations>
