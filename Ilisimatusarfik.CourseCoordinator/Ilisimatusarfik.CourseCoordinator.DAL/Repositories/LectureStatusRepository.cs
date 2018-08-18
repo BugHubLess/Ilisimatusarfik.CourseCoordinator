@@ -11,57 +11,53 @@
     using System.Net;
     using System.Threading.Tasks;
     using System.Transactions;
-    using SP = StoredProcedures.StatusTranslations;
+    using IN = StoredProcedures.Input;
+    using OUT = StoredProcedures.Output;
+    using SP = StoredProcedures.LectureStatusTranslations;
 
-    public class StatusRepository : IStatusRepository
+    // TODO: Check the variable names in SQL SP, and the SQL SP name itself
+    public class LectureStatusRepository : ILectureStatusRepository
     {
         private readonly IConnectionFactory connectionFactory;
 
-        public StatusRepository(IConnectionFactory connectionFactory)
+        public LectureStatusRepository(IConnectionFactory connectionFactory)
         {
             this.connectionFactory = connectionFactory;
         }
 
-        public async Task<Result<Status>> CreateStatus(Status status, string locale)
+        public async Task<Result<LectureStatus>> CreateStatus(LectureStatus status, string locale)
         {
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
             {
-                var sqlParams = new DynamicParameters(new
-                {
-                    name = status.Name,
-                    locale = locale
-                });
-                sqlParams.Add("id", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+                var sqlParams = new DynamicParameters(new IN.Create(status.Status, locale));
+                sqlParams.Add(OUT.ID, dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 await connection.ExecuteScalarAsync<int>(SP.Create, sqlParams, commandType: CommandType.StoredProcedure);
-                var id = sqlParams.Get<int>("id");
+                var id = sqlParams.Get<int>(OUT.ID);
 
                 if (id > 0)
                 {
                     transactionScope.Complete();
-                    status.StatusID = id;
+                    status.LectureStatusID = id;
                     return Builder.CreateSuccess(status);
                 }
 
-                var error = new Error((int)HttpStatusCode.InternalServerError, "Could not create status");
+                var error = new Error(HttpStatusCode.InternalServerError, "Could not create status for lecture");
                 return Builder.CreateError(status, error);
             }
         }
 
-        public async Task<Result> DeleteStatus(int statusId)
+        public async Task<Result> DeleteStatus(int lectureStatusId)
         {
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
             {
-                var sqlParams = new DynamicParameters(new
-                {
-                    statusId = statusId
-                });
-                sqlParams.Add("rows", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+                var sqlParams = new DynamicParameters(new IN.Delete(lectureStatusId));
+                sqlParams.Add(OUT.ROWS, dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 await connection.ExecuteAsync(SP.Delete, sqlParams, commandType: CommandType.StoredProcedure);
-                var rows = sqlParams.Get<int>("rows");
+                var rows = sqlParams.Get<int>(OUT.ROWS);
 
                 if (rows == 1)
                 {
@@ -69,58 +65,44 @@
                     return Builder.CreateSuccess();
                 }
 
-                var message = $"Could not delete the status with ID: {statusId}";
+                var message = $"Could not delete the status for lecture with ID: {lectureStatusId}";
                 var error = new Error(HttpStatusCode.InternalServerError, message);
                 return Builder.CreateError(error);
             }
         }
 
-        public async Task<Result<IList<Status>>> GetAllStatus(string locale)
+        public async Task<Result<IList<LectureStatus>>> GetAllStatus(string locale)
         {
             using (var connection = connectionFactory.CreateConnection())
             {
-                var sqlParams = new
-                {
-                    locale = locale
-                };
-
-                var query = await connection.QueryAsync<Status>(SP.GetMany, sqlParams, commandType: CommandType.StoredProcedure);
-                IList<Status> result = query.ToList();
+                var sqlParams = new IN.GetAll(locale);
+                var query = await connection.QueryAsync<LectureStatus>(SP.GetMany, sqlParams, commandType: CommandType.StoredProcedure);
+                IList<LectureStatus> result = query.ToList();
 
                 return Builder.CreateSuccess(result);
             }
         }
 
-        public async Task<Result<Status>> GetStatus(int statusId, string locale)
+        public async Task<Result<LectureStatus>> GetStatus(int lectureStatusId, string locale)
         {
             using (var connection = connectionFactory.CreateConnection())
             {
-                var sqlParams = new
-                {
-                    statusId = statusId,
-                    locale = locale
-                };
-
-                var result = await connection.QueryFirstOrDefaultAsync<Status>(SP.GetSingle, sqlParams, commandType: CommandType.StoredProcedure);
+                var sqlParams = new IN.GetSingle(lectureStatusId, locale);
+                var result = await connection.QueryFirstOrDefaultAsync<LectureStatus>(SP.GetSingle, sqlParams, commandType: CommandType.StoredProcedure);
                 return Builder.CreateSuccess(result);
             }
         }
 
-        public async Task<Result> TranslateStatus(Status status, string locale)
+        public async Task<Result> TranslateStatus(LectureStatus lectureStatus, string locale)
         {
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
             {
-                var sqlParams = new DynamicParameters(new
-                {
-                    statusId = status.StatusID,
-                    locale = locale,
-                    name = status.Name
-                });
-                sqlParams.Add("rows", dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
+                var sqlParams = new DynamicParameters(new IN.Update(lectureStatus.LectureStatusID, locale, lectureStatus.Status));
+                sqlParams.Add(OUT.ROWS, dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 await connection.ExecuteAsync(SP.Update, sqlParams, commandType: CommandType.StoredProcedure);
-                var rows = sqlParams.Get<int>("rows");
+                var rows = sqlParams.Get<int>(OUT.ROWS);
 
                 if (rows == 1)
                 {
@@ -128,7 +110,7 @@
                     return Builder.CreateSuccess();
                 }
 
-                var message = $"Could not update or create a translation for status with ID: {status.StatusID}\nPossible reasons:\n1 - The status does not exist\n2 - Unexpected SQL error";
+                var message = $"Could not update or create a translation for status with ID: {lectureStatus.LectureStatusID}\nPossible reasons:\n1 - The status does not exist\n2 - Unexpected SQL error";
                 var error = new Error(HttpStatusCode.InternalServerError, message);
                 return Builder.CreateError(error);
             }
