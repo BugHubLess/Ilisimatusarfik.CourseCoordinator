@@ -2,7 +2,7 @@
 {
     using System.Net;
 
-    public class Error
+    public readonly struct Error
     {
         public Error(HttpStatusCode status, string message)
         {
