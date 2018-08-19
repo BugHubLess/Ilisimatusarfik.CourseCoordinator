@@ -31,7 +31,7 @@
 
             // Repositories
             builder.RegisterType<LanguageRepository>().As<ILanguageRepository>();
-            builder.RegisterType<StatusRepository>().As<IStatusRepository>();
+            builder.RegisterType<LectureStatusRepository>().As<ILectureStatusRepository>();
             builder.RegisterType<StudyProgramRepository>().As<IStudyProgramRepository>();
         }
     }

@@ -9,7 +9,7 @@
         public Course Course { get; set; }
         public DateTimeOffset Start { get; set; }
         public TimeSpan Duration { get; set; }
-        public Status Status { get; set; }
+        public LectureStatus Status { get; set; }
         public Classroom Classroom { get; set; }
 
         public int CompareTo(Lecture other)
