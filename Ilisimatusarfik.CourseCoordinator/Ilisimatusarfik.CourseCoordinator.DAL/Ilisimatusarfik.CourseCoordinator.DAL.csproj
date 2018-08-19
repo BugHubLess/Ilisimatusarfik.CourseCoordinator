@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="StoredProcedures\Languages.cs" />
-    <Compile Include="StoredProcedures\StatusTranslations.cs" />
+    <Compile Include="StoredProcedures\LectureStatusTranslations.cs" />
     <Compile Include="StoredProcedures\StudyPrograms.cs" />
     <Compile Include="Factories\ConnectionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
