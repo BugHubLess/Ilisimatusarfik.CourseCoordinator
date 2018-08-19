@@ -25,12 +25,18 @@
             this.connectionFactory = connectionFactory;
         }
 
-        public async Task<Result<LectureStatus>> CreateStatus(LectureStatus status, string locale)
+        public async Task<Result<LectureStatus>> CreateStatus(LectureStatus status)
         {
+            if (status.Language.LanguageID <= 0 || string.IsNullOrEmpty(status.Language.Locale.Trim()))
+            {
+                var error = new Error(HttpStatusCode.BadRequest, "No locale specified");
+                return Builder.CreateError(status, error);
+            }
+
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
             {
-                var sqlParams = new DynamicParameters(new IN.Create(status.Status, locale));
+                var sqlParams = new DynamicParameters(new IN.Create(status.Status, status.Language.Locale));
                 sqlParams.Add(OUT.ID, dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 await connection.ExecuteScalarAsync<int>(SP.Create, sqlParams, commandType: CommandType.StoredProcedure);
@@ -93,12 +99,18 @@
             }
         }
 
-        public async Task<Result> TranslateStatus(LectureStatus lectureStatus, string locale)
+        public async Task<Result> TranslateStatus(LectureStatus lectureStatus)
         {
+            if (lectureStatus.Language.LanguageID <= 0 || string.IsNullOrEmpty(lectureStatus.Language.Locale.Trim()))
+            {
+                var error = new Error(HttpStatusCode.BadRequest, "No locale specified");
+                return Builder.CreateError(error);
+            }
+
             using (var transactionScope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
             using (var connection = connectionFactory.CreateConnection())
             {
-                var sqlParams = new DynamicParameters(new IN.Update(lectureStatus.LectureStatusID, locale, lectureStatus.Status));
+                var sqlParams = new DynamicParameters(new IN.Update(lectureStatus.LectureStatusID, lectureStatus.Language.Locale, lectureStatus.Status));
                 sqlParams.Add(OUT.ROWS, dbType: DbType.Int32, direction: ParameterDirection.ReturnValue);
 
                 await connection.ExecuteAsync(SP.Update, sqlParams, commandType: CommandType.StoredProcedure);
