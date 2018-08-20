@@ -12,9 +12,10 @@
         private const string connectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=Ilisimatusarfik.Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         [Theory]
-        [InlineData("kl-GL", 1, "Kalaallisut")]
+        [InlineData("kl-GL", 1, "Kalaallisut", "Pisussamisoorpoq")]
+        [InlineData("da-DK", 2, "Dansk", "Planlagt")]
         [Trait("DatabaseIntegration", "Success")]
-        public async void WhenLocaleExists_ShouldCreateLectureStatus(string locale, int languageId, string displayName)
+        public async void WhenLocaleExists_ShouldCreateLectureStatus(string locale, int languageId, string displayName, string localeStatus)
         {
             // Arrange
             ILectureStatusRepository lectureStatusRepository = new LectureStatusRepository(new ConnectionFactory(connectionString));
@@ -27,7 +28,7 @@
                     Locale = locale
                 },
                 LectureStatusID = 0,
-                Status = "Scheduled"
+                Status = localeStatus
             };
             int id = 0;
 
