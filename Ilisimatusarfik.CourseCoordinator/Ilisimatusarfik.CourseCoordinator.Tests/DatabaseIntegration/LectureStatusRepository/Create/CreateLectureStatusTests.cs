@@ -1,20 +1,20 @@
 ﻿namespace Ilisimatusarfik.CourseCoordinator.Tests.DatabaseIntegration.LectureStatusRepository.Create
 {
-    using Ilisimatusarfik.CourseCoordinator.Commons.Models.Places;
+    using Ilisimatusarfik.CourseCoordinator.Commons.Categories;
     using Ilisimatusarfik.CourseCoordinator.Commons.Repositories;
     using Ilisimatusarfik.CourseCoordinator.DAL.Factories;
+    using Ilisimatusarfik.CourseCoordinator.DAL.Repositories;
     using System.Threading.Tasks;
     using Xunit;
-    using Ilisimatusarfik.CourseCoordinator.DAL.Repositories;
-    using Ilisimatusarfik.CourseCoordinator.Commons.Categories;
 
     public class CreateLectureStatusTests
     {
         private const string connectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=Ilisimatusarfik.Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
 
         [Theory]
+        [InlineData("kl-GL", 1, "Kalaallisut")]
         [Trait("DatabaseIntegration", "Success")]
-        public async void CreateLectureStatus()
+        public async void CreateLectureStatus(string locale, int languageId, string displayName)
         {
             // Arrange
             ILectureStatusRepository lectureStatusRepository = new LectureStatusRepository(new ConnectionFactory(connectionString));
@@ -22,15 +22,26 @@
             {
                 Language = new Language
                 {
-                    DisplayName = "Kalaallisut",
-                    LanguageID = 1,
-                    Locale = "kl-GL"
+                    DisplayName = displayName,
+                    LanguageID = languageId,
+                    Locale = locale
                 },
                 LectureStatusID = 0,
                 Status = "Scheduled"
             };
+            int id = 0;
 
-            var result = await lectureStatusRepository.CreateStatus(status, "kl-GL");
+            // Act
+            var created = await lectureStatusRepository.CreateStatus(status);
+            var result = created.Match(
+                success: l => { id = l.LectureStatusID; return true; },
+                failure: _ => false
+            );
+
+            await TearDown(lectureStatusRepository, id);
+
+            // Assert
+            Assert.True(result);
         }
 
         private async Task TearDown(ILectureStatusRepository lectureStatusRepository, int id)
