@@ -14,7 +14,7 @@
         [Theory]
         [InlineData("kl-GL", 1, "Kalaallisut")]
         [Trait("DatabaseIntegration", "Success")]
-        public async void CreateLectureStatus(string locale, int languageId, string displayName)
+        public async void WhenLocaleExists_ShouldCreateLectureStatus(string locale, int languageId, string displayName)
         {
             // Arrange
             ILectureStatusRepository lectureStatusRepository = new LectureStatusRepository(new ConnectionFactory(connectionString));
