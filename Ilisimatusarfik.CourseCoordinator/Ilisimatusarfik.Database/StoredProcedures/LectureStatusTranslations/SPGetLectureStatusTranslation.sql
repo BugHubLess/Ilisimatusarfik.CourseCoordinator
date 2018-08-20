@@ -6,7 +6,7 @@ CREATE PROCEDURE [dbo].[SPGetLectureStatusTranslation]
 	@lectureStatusId int,
 	@locale nvarchar(50)
 AS
-	SELECT S.LectureStatusID, ST.LectureStatus FROM
+	SELECT S.LectureStatusID, ST.Status FROM
 	((SELECT LanguageID, Locale FROM Languages) AS L
 	CROSS JOIN
 	(SELECT LectureStatusID FROM LectureStatus) AS S)
