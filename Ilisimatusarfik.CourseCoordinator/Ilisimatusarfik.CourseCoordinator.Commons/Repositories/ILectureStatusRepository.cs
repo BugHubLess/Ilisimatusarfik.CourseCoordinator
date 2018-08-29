@@ -21,7 +21,7 @@
         /// </summary>
         /// <param name="status">The translation status must exist</param>
         /// <returns>A result of the translated status</returns>
-        Task<Result> TranslateStatus(LectureStatus status);
+        Task<Result> TranslateStatus(LectureStatus lectureStatus);
 
         /// <summary>
         /// Retrieves all statuses, even those without any actual translations
@@ -31,8 +31,8 @@
         /// <returns>A full list of statuses</returns>
         Task<Result<IList<LectureStatus>>> GetAllStatus(string locale);
 
-        Task<Result<LectureStatus>> GetStatus(int statusId, string locale);
+        Task<Result<LectureStatus>> GetStatus(int lectureStatusId, string locale);
 
-        Task<Result> DeleteStatus(int statusId);
+        Task<Result> DeleteStatus(int lectureStatusId);
     }
 }
