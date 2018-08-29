@@ -103,7 +103,7 @@
         {
             if (lectureStatus.Language.LanguageID <= 0 || string.IsNullOrEmpty(lectureStatus.Language.Locale.Trim()))
             {
-                var error = new Error(HttpStatusCode.BadRequest, "No locale specified");
+                var error = new Error(HttpStatusCode.BadRequest, "No locale or proper language id specified");
                 return Builder.CreateError(error);
             }
 
