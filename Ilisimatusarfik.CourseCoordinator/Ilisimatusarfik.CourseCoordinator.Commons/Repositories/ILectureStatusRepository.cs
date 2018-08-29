@@ -19,7 +19,7 @@
         /// for an existing status.
         /// Note: that the status text should exist for another language!
         /// </summary>
-        /// <param name="status">The translation status must exist</param>
+        /// <param name="lectureStatus">The translation status must exist</param>
         /// <returns>A result of the translated status</returns>
         Task<Result> TranslateStatus(LectureStatus lectureStatus);
 
