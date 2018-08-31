@@ -45,6 +45,43 @@
             Assert.True(result);
         }
 
+        [Theory]
+        [InlineData("Kalaallisut", "Pisussamisoorpoq")]
+        [InlineData("Dansk", "Planlagt")]
+        [Trait("DatabaseIntegration", "Failure")]
+        public async void WhenLocaleDoesNotExist_ShouldNotCreateStatus(string displayName, string localeStatus)
+        {
+            // Arrange
+            ILectureStatusRepository lectureStatusRepository = new LectureStatusRepository(new ConnectionFactory(connectionString));
+            var status = new LectureStatus
+            {
+                Language = new Language
+                {
+                    DisplayName = displayName,
+                    LanguageID = 1,
+                    Locale = ""
+                },
+                LectureStatusID = 0,
+                Status = localeStatus
+            };
+            int id = 0;
+
+            // Act
+            var created = await lectureStatusRepository.CreateStatus(status);
+            var result = created.Match(
+                success: l => { id = l.LectureStatusID; return true; },
+                failure: _ => false
+            );
+
+            if(result)
+            {
+                await TearDown(lectureStatusRepository, id);
+            }
+
+            // Assert
+            Assert.False(result);
+        }
+
         private async Task TearDown(ILectureStatusRepository lectureStatusRepository, int id)
         {
             if (id <= 0) return;
