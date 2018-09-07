@@ -46,10 +46,10 @@
         }
 
         [Theory]
-        [InlineData("Kalaallisut", "Pisussamisoorpoq")]
-        [InlineData("Dansk", "Planlagt")]
+        [InlineData("", "Kalaallisut", "Pisussamisoorpoq")]
+        [InlineData("ABC", "Dansk", "Planlagt")]
         [Trait("DatabaseIntegration", "Failure")]
-        public async void WhenLocaleDoesNotExist_ShouldNotCreateStatus(string displayName, string localeStatus)
+        public async void WhenLocaleDoesNotExist_ShouldNotCreateStatus(string locale, string displayName, string localeStatus)
         {
             // Arrange
             ILectureStatusRepository lectureStatusRepository = new LectureStatusRepository(new ConnectionFactory(connectionString));
@@ -59,7 +59,7 @@
                 {
                     DisplayName = displayName,
                     LanguageID = 1,
-                    Locale = ""
+                    Locale = locale
                 },
                 LectureStatusID = 0,
                 Status = localeStatus
