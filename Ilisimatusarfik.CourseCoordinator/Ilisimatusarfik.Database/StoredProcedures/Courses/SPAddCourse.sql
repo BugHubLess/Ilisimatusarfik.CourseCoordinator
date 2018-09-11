@@ -1,5 +1,6 @@
 ﻿/**
- Creates a course and returns the ID of the newly created course
+ Creates a course and returns the ID of the newly created course.
+ Precondition: locale must exist
 */
 CREATE PROCEDURE [dbo].[SPAddCourse]
 	@locale NVARCHAR(50),
@@ -10,17 +11,28 @@ CREATE PROCEDURE [dbo].[SPAddCourse]
 	@description NVARCHAR(MAX)
 AS
 BEGIN TRANSACTION
-BEGIN TRY
-	DECLARE @ID INT;
-	INSERT INTO Courses (StartDate, EndDate, ECTS)-- This will set SCOPE_IDENTITY
-	VALUES (@startDate, @endDate, @ECTS)
-	SET @ID = SCOPE_IDENTITY();
-	INSERT INTO CourseTranslations(CourseID, LanguageID, Name, Description)
-	SELECT @ID, LanguageID, @name, @description FROM Languages WHERE Locale = @locale
-COMMIT TRANSACTION
-END TRY
+	SET XACT_ABORT ON
+	BEGIN
+		BEGIN TRY
+			DECLARE @ID INT
 
-BEGIN CATCH
-	ROLLBACK TRANSACTION
-END CATCH
+			IF EXISTS (SELECT * FROM Languages WHERE Locale = @locale)
+			BEGIN
+				INSERT INTO Courses (StartDate, EndDate, ECTS)-- This will set SCOPE_IDENTITY
+				VALUES (@startDate, @endDate, @ECTS)
+				SET @ID = SCOPE_IDENTITY();
+				INSERT INTO CourseTranslations(CourseID, LanguageID, Name, Description)
+				SELECT @ID, LanguageID, @name, @description FROM Languages WHERE Locale = @locale
+			END
+			ELSE BEGIN
+				SET @ID = 0
+			END
+
+			COMMIT TRANSACTION
+		END TRY
+
+		BEGIN CATCH
+			ROLLBACK TRANSACTION
+		END CATCH
+	END
 RETURN @ID
