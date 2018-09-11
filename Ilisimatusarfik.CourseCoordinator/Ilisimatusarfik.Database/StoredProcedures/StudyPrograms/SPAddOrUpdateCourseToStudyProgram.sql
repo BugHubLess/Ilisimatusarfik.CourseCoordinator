@@ -1,4 +1,8 @@
-﻿CREATE PROCEDURE [dbo].[SPAddOrUpdateCourseToStudyProgram]
+﻿/**
+ Creates or updates a course and assigns it to a study program.
+ Precondition: locale must exist
+*/
+CREATE PROCEDURE [dbo].[SPAddOrUpdateCourseToStudyProgram]
 	@studyProgramId INT,
 	@locale NVARCHAR(50),
 	@courseId INT,
@@ -14,20 +18,23 @@ BEGIN TRY
 	DECLARE @RESULT INT;
 	IF NOT EXISTS (SELECT CourseID FROM Courses WHERE Courses.CourseID = @courseId)
 	BEGIN
-		DECLARE @CID INT;
-		SET @CID = 0;
-		INSERT Courses (StartDate, EndDate, ECTS)
-		VALUES (@startDate, @endDate, @ects)
+		IF EXISTS (SELECT * FROM Languages WHERE Locale = @locale)
+		BEGIN
+			DECLARE @CID INT;
+			SET @CID = 0;
+			INSERT Courses (StartDate, EndDate, ECTS)
+			VALUES (@startDate, @endDate, @ects)
 
-		SET @CID = SCOPE_IDENTITY();
+			SET @CID = SCOPE_IDENTITY();
 
-		INSERT INTO CourseTranslations (CourseID, LanguageID, Name, Description)
-		SELECT @CID, LanguageID, @name, @description FROM Languages WHERE Locale = @locale
+			INSERT INTO CourseTranslations (CourseID, LanguageID, Name, Description)
+			SELECT @CID, LanguageID, @name, @description FROM Languages WHERE Locale = @locale
 
-		INSERT StudyProgramCourses (StudyProgramID, CourseID, Semester)
-		VALUES (@studyProgramId, @CID, @semester)
+			INSERT StudyProgramCourses (StudyProgramID, CourseID, Semester)
+			VALUES (@studyProgramId, @CID, @semester)
 
-		SET @RESULT = @CID;
+			SET @RESULT = @CID;
+		END
 	END
 	ELSE
 	BEGIN
