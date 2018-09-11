@@ -3,16 +3,28 @@
 	@status NVARCHAR(MAX)
 AS
 BEGIN TRANSACTION
-BEGIN TRY
-	DECLARE @ID INT;
-		INSERT LectureStatus DEFAULT VALUES -- This will set SCOPE_IDENTITY
-		INSERT INTO LectureStatusTranslations (LectureStatusID, LanguageID, Status)
-		SELECT @ID, LanguageID, @status FROM Languages WHERE Locale = @locale
-		SET @ID = SCOPE_IDENTITY();
-		COMMIT TRANSACTION
-END TRY
+	SET XACT_ABORT ON
+	BEGIN
+		BEGIN TRY
+			DECLARE @ID INT
 
-BEGIN CATCH
-	ROLLBACK TRANSACTION
-END CATCH
+			IF EXISTS (SELECT * FROM Languages WHERE Locale = @locale)
+			BEGIN
+				INSERT LectureStatus DEFAULT VALUES -- This will set SCOPE_IDENTITY
+				SET @ID = SCOPE_IDENTITY()
+
+				INSERT INTO LectureStatusTranslations (LectureStatusID, LanguageID, Status)
+				SELECT @ID, LanguageID, @status FROM Languages WHERE Locale = @locale
+			END
+			ELSE BEGIN
+				SET @ID = 0
+			END
+
+			COMMIT TRANSACTION
+		END TRY
+
+		BEGIN CATCH
+			ROLLBACK TRANSACTION
+		END CATCH
+	END
 RETURN @ID
