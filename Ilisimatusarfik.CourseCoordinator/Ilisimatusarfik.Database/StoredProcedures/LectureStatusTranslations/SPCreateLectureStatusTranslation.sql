@@ -1,4 +1,8 @@
-﻿CREATE PROCEDURE [dbo].[SPCreateLectureStatusTranslation]
+﻿/**
+ Creates a lecture status
+ Precondition: locale must exist
+*/
+CREATE PROCEDURE [dbo].[SPCreateLectureStatusTranslation]
 	@locale NVARCHAR(50),
 	@status NVARCHAR(MAX)
 AS
