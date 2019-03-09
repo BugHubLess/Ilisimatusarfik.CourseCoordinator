@@ -9,7 +9,7 @@
 
     public class CreateLectureStatusTests
     {
-        private const string connectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=Ilisimatusarfik.Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+        private const string connectionString = @"Data Source=JOHNNY-PC\SQLEXPRESS;Initial Catalog=Ilisimatusarfik.Database;Integrated Security=True";
 
         [Theory]
         [InlineData("kl-GL", 1, "Kalaallisut", "Pisussamisoorpoq")]

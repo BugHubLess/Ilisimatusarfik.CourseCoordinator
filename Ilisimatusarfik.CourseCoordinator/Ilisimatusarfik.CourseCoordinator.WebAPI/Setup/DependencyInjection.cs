@@ -21,8 +21,8 @@
 
         private static void Register(ContainerBuilder builder)
         {
-            // "Server=(localdb)\\v11.0;Integrated Security=true;"
-            var connectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=Ilisimatusarfik.Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            // Data Source=(localdb)\ProjectsV13;Initial Catalog=Ilisimatusarfik.Database;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False
+            var connectionString = @"Data Source=JOHNNY-PC\SQLEXPRESS;Initial Catalog=Ilisimatusarfik.Database;Integrated Security=True";
             builder.Register(_ => new ConnectionFactory(connectionString)).As<IConnectionFactory>();
 
             // Controllers
